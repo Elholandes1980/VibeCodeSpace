@@ -20,6 +20,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
+    "@libsql/client": "^0.17.0",
     "@payloadcms/db-sqlite": "^3.71.1",
     "@payloadcms/next": "^3.71.1",
     "@payloadcms/richtext-lexical": "^3.71.1",
