@@ -45,5 +45,5 @@ payload*.db
 payload.db.backup
 payload-types.ts
 
-# Convex
-convex/_generated
+# Convex (generated files now committed for Vercel build)
+# convex/_generated

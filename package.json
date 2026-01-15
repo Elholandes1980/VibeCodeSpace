@@ -5,7 +5,7 @@
   "description": "Software gebouwd in het vibecoding-tijdperk",
   "scripts": {
     "dev": "next dev",
-    "build": "npx convex codegen && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx,.js,.mjs",
     "typecheck": "tsc --noEmit",
