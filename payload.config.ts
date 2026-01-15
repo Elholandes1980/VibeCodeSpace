@@ -44,6 +44,7 @@ const getDatabaseAdapter = () => {
       pool: {
         connectionString: databaseUrl,
       },
+      push: true, // Auto-push schema changes without prompting
     })
   }
 
