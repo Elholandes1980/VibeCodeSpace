@@ -21,6 +21,7 @@ import { buildConfig } from 'payload'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Profiles } from './payload/collections/Profiles'
 import { Media } from './payload/collections/Media'
 import { Tags } from './payload/collections/Tags'
@@ -145,4 +146,19 @@ export default buildConfig({
       fileSize: 5000000, // 5MB
     },
   },
+
+  // === Cloud Storage (Vercel Blob in production) ===
+  plugins: [
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            enabled: true,
+            collections: {
+              media: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
+  ],
 })

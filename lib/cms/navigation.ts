@@ -151,10 +151,11 @@ export const getToolsMegaMenu = unstable_cache(
   async (locale: Locale): Promise<ToolsMegaMenuData | null> => {
     const payload = await getPayloadClient()
 
-    // Fetch navigation global
+    // Fetch navigation global with populated relationships
     const navigation = await payload.findGlobal({
       slug: 'navigation',
       locale,
+      depth: 2, // Populate category and tool relationships
     })
 
     const megaMenu = navigation.toolsMegaMenu
