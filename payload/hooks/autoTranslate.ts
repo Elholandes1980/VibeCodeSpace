@@ -34,8 +34,14 @@ export const autoTranslateHook: CollectionAfterChangeHook = async ({
   req,
   operation,
   previousDoc,
+  context,
 }) => {
   const { payload } = req
+
+  // Skip if this is a translation update (prevent infinite loop)
+  if (context?.skipTranslation) {
+    return doc
+  }
 
   // Only process when editing in NL locale or creating new
   const currentLocale = req.locale || SOURCE_LOCALE
