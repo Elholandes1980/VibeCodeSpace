@@ -29,8 +29,6 @@ export const Media: CollectionConfig = {
   },
   upload: {
     staticDir: 'media',
-    // Vercel Blob storage plugin will override this when BLOB_READ_WRITE_TOKEN is set
-    disableLocalStorage: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
     mimeTypes: ['image/*'],
     imageSizes: [
       {

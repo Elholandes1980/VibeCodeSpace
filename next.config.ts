@@ -18,6 +18,20 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        pathname: '/media/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.blob.vercel-storage.com',
+        pathname: '/**',
+      },
+    ],
+  },
 }
 
 export default withPayload(nextConfig)

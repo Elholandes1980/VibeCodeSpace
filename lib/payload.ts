@@ -21,6 +21,78 @@ const getPayloadClient = cache(async () => {
   return getPayload({ config: configPromise })
 })
 
+// === Media URL Transformation ===
+
+/**
+ * Transform a Payload media URL to the correct storage URL.
+ * When Vercel Blob is configured, converts /api/media/file/filename.jpg
+ * to the correct blob storage URL.
+ */
+function getMediaUrl(url: string | null | undefined): string | null {
+  if (!url) return null
+
+  // If already a full URL (blob storage or external), return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  // Check if Vercel Blob storage is configured
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+  if (!blobToken) {
+    return url
+  }
+
+  // Parse store ID from token
+  const storeIdMatch = blobToken.match(/^vercel_blob_rw_([a-z\d]+)_[a-z\d]+$/i)
+  if (!storeIdMatch) {
+    return url
+  }
+
+  const storeId = storeIdMatch[1].toLowerCase()
+
+  // Transform local API URL to blob URL
+  if (url.startsWith('/api/media/file/')) {
+    let filename = url.replace('/api/media/file/', '')
+    // Remove number suffix (e.g., "pitchdeck-2.jpg" -> "pitchdeck.jpg")
+    filename = filename.replace(/-\d+\./, '.')
+    return `https://${storeId}.public.blob.vercel-storage.com/media/${filename}`
+  }
+
+  return url
+}
+
+/**
+ * Transform all URLs in a media object.
+ */
+function transformMediaUrls<T extends { url?: string | null; sizes?: Record<string, { url?: string | null }> }>(
+  media: T | null
+): T | null {
+  if (!media) return null
+
+  return {
+    ...media,
+    url: getMediaUrl(media.url),
+    sizes: media.sizes
+      ? Object.fromEntries(
+          Object.entries(media.sizes).map(([key, size]) => [
+            key,
+            size ? { ...size, url: getMediaUrl(size.url) } : size,
+          ])
+        )
+      : undefined,
+  } as T
+}
+
+/**
+ * Transform case preview to fix media URLs.
+ */
+function transformCasePreview(doc: CasePreview): CasePreview {
+  return {
+    ...doc,
+    featuredImage: doc.featuredImage ? transformMediaUrls(doc.featuredImage) as CasePreview['featuredImage'] : undefined,
+  }
+}
+
 // === Site Global ===
 
 export interface SiteGlobalData {
@@ -189,7 +261,7 @@ export const getLatestCases = cache(async (
       depth: 1,
     })
 
-    return result.docs as unknown as CasePreview[]
+    return (result.docs as unknown as CasePreview[]).map(transformCasePreview)
   } catch {
     console.error('[Payload] Failed to fetch latest cases')
     return []
@@ -218,7 +290,7 @@ export const getFeaturedCases = cache(async (
       depth: 1,
     })
 
-    return result.docs as unknown as CasePreview[]
+    return (result.docs as unknown as CasePreview[]).map(transformCasePreview)
   } catch {
     console.error('[Payload] Failed to fetch featured cases')
     return []
