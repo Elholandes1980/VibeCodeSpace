@@ -21,6 +21,7 @@
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
     "@libsql/client": "^0.17.0",
+    "@payloadcms/db-postgres": "^3.71.1",
     "@payloadcms/db-sqlite": "^3.71.1",
     "@payloadcms/next": "^3.71.1",
     "@payloadcms/richtext-lexical": "^3.71.1",
@@ -34,6 +35,7 @@
     "lucide-react": "^0.562.0",
     "next": "^15.5.9",
     "payload": "^3.71.1",
+    "pg": "^8.17.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "sharp": "^0.34.5",

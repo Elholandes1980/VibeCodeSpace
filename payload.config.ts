@@ -2,7 +2,7 @@
  * payload.config.ts
  *
  * Payload CMS configuration - single source of truth for public content.
- * Uses Turso (cloud SQLite) in production, local SQLite file in development.
+ * Uses PostgreSQL (Neon) in production, local SQLite file in development.
  * Localization enabled: nl (default), en, es.
  *
  * Architecture:
@@ -19,6 +19,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { Profiles } from './payload/collections/Profiles'
 import { Media } from './payload/collections/Media'
@@ -33,17 +34,15 @@ import { SiteGlobal, CoursePromo, Navigation, ToolsSettings } from './payload/gl
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-// Database configuration: Turso in production, local SQLite in development
+// Database configuration: PostgreSQL in production, local SQLite in development
 const getDatabaseAdapter = () => {
-  const tursoUrl = process.env.TURSO_DATABASE_URL
-  const tursoToken = process.env.TURSO_AUTH_TOKEN
+  const databaseUrl = process.env.DATABASE_URL
 
-  if (tursoUrl && tursoToken) {
-    // Production: Use Turso (cloud SQLite)
-    return sqliteAdapter({
-      client: {
-        url: tursoUrl,
-        authToken: tursoToken,
+  if (databaseUrl) {
+    // Production: Use PostgreSQL (Neon/Supabase)
+    return postgresAdapter({
+      pool: {
+        connectionString: databaseUrl,
       },
     })
   }

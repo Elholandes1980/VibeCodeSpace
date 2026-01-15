@@ -18,8 +18,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
-  // Required for libsql/Turso native module on Vercel serverless
-  serverExternalPackages: ['libsql', '@libsql/client'],
 }
 
 export default withPayload(nextConfig)
