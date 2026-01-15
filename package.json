@@ -1,0 +1,57 @@
+{
+  "name": "vibecodespace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Software gebouwd in het vibecoding-tijdperk",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .ts,.tsx,.js,.mjs",
+    "typecheck": "tsc --noEmit",
+    "check:arch": "tsx scripts/check-architecture.ts"
+  },
+  "keywords": [
+    "vibecoding",
+    "showcase",
+    "cms"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.71.1",
+    "@payloadcms/next": "^3.71.1",
+    "@payloadcms/richtext-lexical": "^3.71.1",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "convex": "^1.31.4",
+    "lucide-react": "^0.562.0",
+    "next": "^15.5.9",
+    "payload": "^3.71.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sharp": "^0.34.5",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.7",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^15.5.9",
+    "globals": "^17.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

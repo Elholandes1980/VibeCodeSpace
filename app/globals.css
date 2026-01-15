@@ -1,0 +1,326 @@
+/**
+ * app/globals.css
+ *
+ * Premium design system inspired by Webflow.
+ * Calm, confident, modern aesthetic with generous whitespace.
+ * CSS variables define the color scheme for shadcn/ui components.
+ *
+ * Related:
+ * - tailwind.config.ts
+ * - app/layout.tsx
+ * - components/layout/*
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Design System Variables === */
+
+@layer base {
+  :root {
+    /* Core colors - calm, premium palette */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+
+    /* Panel/card backgrounds */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Primary - confident dark navy */
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - subtle gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 15%;
+
+    /* Muted - soft backgrounds */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    /* === Accent - Electric Indigo === */
+    --accent: 234 89% 59%;
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 234 100% 97%;
+    --accent-muted: 234 60% 94%;
+
+    /* Feedback colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - very subtle */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 89% 59%;
+
+    /* Radius - slightly softer */
+    --radius: 0.625rem;
+
+    /* === Custom Design Tokens === */
+
+    /* Subtle panel background */
+    --panel: 220 20% 98%;
+    --panel-border: 220 13% 93%;
+
+    /* Section backgrounds */
+    --section-alt: 220 20% 98%;
+    --section-accent: 234 100% 99%;
+
+    /* Hero gradient */
+    --hero-gradient: linear-gradient(135deg, hsl(234 100% 99%) 0%, hsl(220 30% 98%) 50%, hsl(0 0% 100%) 100%);
+
+    /* Shadows - refined */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+    --shadow-card-hover: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+    /* Typography */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Dark mode preparation (not active yet) */
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 220 10% 95%;
+    --card: 220 15% 10%;
+    --card-foreground: 220 10% 95%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 220 10% 95%;
+    --primary: 234 80% 65%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 10% 95%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 234 80% 65%;
+    --accent-foreground: 220 15% 8%;
+    --accent-soft: 234 40% 15%;
+    --accent-muted: 234 30% 18%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 234 80% 65%;
+    --panel: 220 15% 10%;
+    --panel-border: 220 15% 15%;
+    --section-alt: 220 15% 6%;
+    --section-accent: 234 40% 10%;
+    --hero-gradient: linear-gradient(135deg, hsl(234 40% 10%) 0%, hsl(220 20% 8%) 100%);
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+    --shadow-card-hover: 0 10px 25px -5px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* === Base Styles === */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Typography - Editorial rhythm */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-foreground;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl leading-[1.1];
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl leading-[1.15];
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl leading-[1.25];
+    letter-spacing: -0.015em;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl leading-[1.3];
+  }
+
+  p {
+    @apply leading-relaxed;
+    text-wrap: pretty;
+  }
+
+  /* Readable line lengths */
+  .prose-readable {
+    max-width: 65ch;
+  }
+
+  /* Editorial prose content */
+  .prose-content {
+    @apply text-muted-foreground leading-relaxed whitespace-pre-line;
+    max-width: 65ch;
+  }
+}
+
+/* === Component Utilities === */
+
+@layer components {
+  /* Premium button hover effect */
+  .btn-hover-lift {
+    @apply transition-all duration-200 ease-out;
+  }
+  .btn-hover-lift:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-hover-lift:active {
+    transform: translateY(0);
+  }
+
+  /* Accent button style */
+  .btn-accent {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  .btn-accent:hover {
+    background-color: hsl(234 89% 54%);
+  }
+
+  /* Glass effect for header */
+  .glass-panel {
+    @apply backdrop-blur-md;
+    background: hsl(var(--background) / 0.92);
+  }
+
+  /* Subtle panel background */
+  .panel-subtle {
+    background: hsl(var(--panel));
+    border-color: hsl(var(--panel-border));
+  }
+
+  /* Section backgrounds */
+  .section-alt {
+    background: hsl(var(--section-alt));
+  }
+
+  .section-accent {
+    background: hsl(var(--section-accent));
+  }
+
+  .section-hero {
+    background: var(--hero-gradient);
+  }
+
+  /* Premium CTA - dark gradient with accent */
+  .section-cta-premium {
+    background: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(234 50% 20%) 100%);
+  }
+
+  /* Card base style */
+  .card-base {
+    @apply rounded-xl border bg-card;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Card hover effect - premium lift */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: hsl(var(--accent) / 0.2);
+  }
+
+  /* Kicker text (small uppercase label above headlines) - accent color */
+  .kicker {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: hsl(var(--accent));
+    letter-spacing: 0.15em;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(234 89% 45%) 100%);
+  }
+
+  /* Badge accent variant */
+  .badge-accent {
+    background-color: hsl(var(--accent-soft));
+    color: hsl(var(--accent));
+    border: 1px solid hsl(var(--accent) / 0.15);
+  }
+
+  /* Badge tag variant (for tags) */
+  .badge-tag {
+    background-color: hsl(var(--accent-muted));
+    color: hsl(var(--accent));
+  }
+
+  /* Badge tool variant (for tools) */
+  .badge-tool {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Best value highlight */
+  .highlight-best-value {
+    border-color: hsl(var(--accent));
+    box-shadow: 0 0 0 1px hsl(var(--accent) / 0.3), var(--shadow-lg);
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--border)) 20%, hsl(var(--border)) 80%, transparent 100%);
+  }
+}
+
+/* === Custom Utilities === */
+
+@layer utilities {
+  /* Section spacing - large and confident */
+  .section-py {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  }
+
+  .section-py-lg {
+    @apply py-16 sm:py-20 md:py-24 lg:py-32;
+  }
+
+  /* Container max-width */
+  .container-tight {
+    @apply max-w-4xl;
+  }
+
+  .container-wide {
+    @apply max-w-7xl;
+  }
+
+  /* Subtle divider */
+  .divider {
+    @apply h-px w-full bg-border;
+  }
+
+  /* Focus ring for accessibility */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}

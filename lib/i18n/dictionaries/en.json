@@ -1,0 +1,349 @@
+{
+  "common": {
+    "siteName": "VibeCodeSpace",
+    "tagline": "[EN] Software built in the vibecoding era"
+  },
+  "nav": {
+    "home": "[EN] Home",
+    "explore": "[EN] Explore",
+    "tools": "[EN] Tools",
+    "pulse": "[EN] Pulse",
+    "about": "[EN] About"
+  },
+  "home": {
+    "hero": {
+      "kicker": "VibeCodeSpace",
+      "headline": "[EN] Where AI builders show what's possible today.",
+      "subheadline": "[EN] Showcases, news and micro-solutions — so you build faster and make better choices.",
+      "primaryCta": "[EN] View showcases",
+      "secondaryCta": "[EN] Submit micro-problem"
+    },
+    "features": {
+      "kicker": "[EN] What you get",
+      "title": "[EN] Everything you need to build smarter",
+      "items": [
+        {
+          "icon": "pulse",
+          "title": "[EN] News & trends",
+          "description": "[EN] Stay up to date with the latest AI tools, techniques and best practices.",
+          "href": "/pulse",
+          "cta": "[EN] View Pulse"
+        },
+        {
+          "icon": "explore",
+          "title": "[EN] Showcases & cases",
+          "description": "[EN] Learn from real projects. See what tools others use and lessons learned.",
+          "href": "/explore",
+          "cta": "[EN] Explore cases"
+        },
+        {
+          "icon": "workspace",
+          "title": "[EN] Prompts & bookmarks",
+          "description": "[EN] Save your favorite prompts, make notes and organize your workflow.",
+          "href": "/workspace",
+          "cta": "[EN] Coming soon",
+          "comingSoon": true
+        }
+      ]
+    },
+    "showcases": {
+      "kicker": "[EN] Featured showcases",
+      "title": "[EN] See what others are building",
+      "viewAll": "[EN] View all cases",
+      "viewCase": "[EN] View case"
+    },
+    "builders": {
+      "kicker": "[EN] Meet the builders",
+      "title": "[EN] The people behind the projects",
+      "viewAll": "[EN] View all builders",
+      "viewProfile": "[EN] View profile",
+      "casesLabel": "cases"
+    },
+    "audience": {
+      "kicker": "[EN] Who it's for",
+      "title": "[EN] Whether you build solo or in a team",
+      "items": [
+        {
+          "icon": "builders",
+          "title": "[EN] Individual builders",
+          "benefits": [
+            "[EN] Learn from real case studies",
+            "[EN] Discover new tools and techniques",
+            "[EN] Get inspiration for your next project"
+          ]
+        },
+        {
+          "icon": "teams",
+          "title": "[EN] Teams & companies",
+          "benefits": [
+            "[EN] Find proven solutions for your challenges",
+            "[EN] Save time with custom micro-solutions",
+            "[EN] Stay ahead in AI-assisted development"
+          ]
+        },
+        {
+          "icon": "partners",
+          "title": "[EN] Tool makers & partners",
+          "benefits": [
+            "[EN] Showcase your tool to the right audience",
+            "[EN] Get discovered by active builders",
+            "[EN] Build relationships in the vibecoding community"
+          ]
+        }
+      ]
+    },
+    "pricing": {
+      "kicker": "[EN] Pricing",
+      "title": "[EN] Choose the plan that fits you",
+      "subtitle": "[EN] Start free and upgrade when you're ready for more.",
+      "contactSales": "[EN] Questions about Enterprise? Contact us →",
+      "plans": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": "$0",
+          "period": "month",
+          "description": "[EN] Perfect to get started",
+          "features": ["[EN] View all showcases", "[EN] Read Pulse updates", "[EN] Basic search"],
+          "cta": "[EN] Start free"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": "$19",
+          "period": "month",
+          "description": "[EN] For active builders",
+          "features": ["[EN] Everything in Free", "[EN] Workspace with prompts", "[EN] Advanced filters", "[EN] Priority for micro-solutions", "[EN] Monthly deep-dive sessions"],
+          "cta": "[EN] Upgrade to Pro",
+          "highlighted": true,
+          "badge": "[EN] Most popular"
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "price": "$49",
+          "period": "month",
+          "description": "[EN] For teams up to 5",
+          "features": ["[EN] Everything in Pro", "[EN] Team workspace", "[EN] Shared prompts & templates", "[EN] Dedicated support", "[EN] Custom onboarding"],
+          "cta": "[EN] Choose Studio"
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "",
+          "description": "[EN] For larger organizations",
+          "features": ["[EN] Everything in Studio", "[EN] Unlimited team members", "[EN] SSO & security controls", "[EN] Custom integrations", "[EN] Dedicated account manager"],
+          "cta": "[EN] Contact us"
+        }
+      ]
+    },
+    "newsletter": {
+      "kicker": "[EN] Stay updated",
+      "title": "[EN] Get the weekly Pulse",
+      "description": "[EN] The best AI tools, cases and insights delivered to your inbox every week.",
+      "placeholder": "your@email.com",
+      "button": "[EN] Subscribe",
+      "success": "[EN] Welcome! Check your inbox for confirmation.",
+      "error": "[EN] Something went wrong. Please try again."
+    }
+  },
+  "explore": {
+    "title": "[EN] Explore",
+    "description": "[EN] Discover what builders are creating in the vibecoding era.",
+    "filters": {
+      "all": "[EN] All",
+      "tags": "[EN] Tags",
+      "tools": "[EN] Tools"
+    },
+    "empty": {
+      "title": "[EN] No cases found",
+      "description": "[EN] There are no cases matching your filters. Try different filters or view all cases.",
+      "clearFilters": "[EN] Clear filters"
+    },
+    "loading": "[EN] Loading cases..."
+  },
+  "tools": {
+    "title": "[EN] Tools",
+    "description": "[EN] Tools and technologies used in vibecoding projects."
+  },
+  "pulse": {
+    "title": "[EN] Pulse",
+    "description": "[EN] Curated updates from the world of AI-assisted development."
+  },
+  "about": {
+    "title": "[EN] About",
+    "description": "[EN] Learn more about VibeCodeSpace and our mission."
+  },
+  "caseDetail": {
+    "sections": {
+      "problem": "The problem",
+      "solution": "The solution",
+      "stack": "Technology",
+      "learnings": "What we learned"
+    },
+    "cta": {
+      "title": "Built something with AI?",
+      "description": "Share your project with the vibecoding community. Or have a problem we can solve?",
+      "button": "Submit your case"
+    },
+    "relatedCases": {
+      "title": "Discover more cases",
+      "viewCase": "View case"
+    },
+    "meta": {
+      "titleSuffix": "| VibeCodeSpace",
+      "defaultDescription": "Discover how this problem was solved with AI-assisted development."
+    },
+    "notFound": {
+      "title": "Case not found",
+      "description": "This case does not exist or is no longer available.",
+      "backToExplore": "Back to Explore"
+    },
+    "loading": "Loading case..."
+  },
+  "builders": {
+    "title": "Builders",
+    "description": "Discover the people behind the projects. AI-native builders creating the future.",
+    "filters": {
+      "all": "All",
+      "plans": "Plan",
+      "free": "Free",
+      "pro": "Pro",
+      "studio": "Studio"
+    },
+    "card": {
+      "cases": "cases",
+      "followers": "followers",
+      "viewProfile": "View profile"
+    },
+    "empty": {
+      "title": "No builders found",
+      "description": "There are no builders matching your filters. Try different filters.",
+      "clearFilters": "Clear filters"
+    },
+    "loading": "Loading builders..."
+  },
+  "builderDetail": {
+    "sections": {
+      "about": "About",
+      "cases": "Cases",
+      "links": "Links"
+    },
+    "social": {
+      "followers": "Followers",
+      "following": "Following",
+      "posts": "Posts"
+    },
+    "cta": {
+      "contactTitle": "Get in touch",
+      "contactDescription": "Want to collaborate with this builder?",
+      "registerToContact": "Register to contact",
+      "contact": "Contact"
+    },
+    "badges": {
+      "pro": "Pro",
+      "studio": "Studio",
+      "featured": "Featured"
+    },
+    "empty": {
+      "noCases": "This builder hasn't published any cases yet."
+    },
+    "notFound": {
+      "title": "Builder not found",
+      "description": "This builder does not exist or is no longer available.",
+      "backToBuilders": "Back to Builders"
+    },
+    "loading": "Loading builder..."
+  },
+  "footer": {
+    "copyright": "[EN] All rights reserved.",
+    "contact": "[EN] Contact",
+    "privacy": "[EN] Privacy",
+    "terms": "[EN] Terms"
+  },
+  "intake": {
+    "title": "Describe your problem",
+    "subtitle": "Tell us about the problem you want to solve. We'll get back to you within 48 hours.",
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "Short and clear: what's the core problem?",
+      "problemDescription": "Problem description",
+      "problemDescriptionPlaceholder": "Describe the problem in detail. What's happening now? What are the consequences?",
+      "desiredOutcome": "Desired outcome",
+      "desiredOutcomePlaceholder": "What would the ideal situation look like? How do you define success?",
+      "country": "Country",
+      "countryPlaceholder": "United States",
+      "language": "Preferred language",
+      "languageOptions": {
+        "nl": "Dutch",
+        "en": "English",
+        "es": "Spanish",
+        "other": "Other"
+      },
+      "companySize": "Company size",
+      "companySizeOptions": {
+        "solo": "Solo / Freelancer",
+        "2_10": "2-10 employees",
+        "11_50": "11-50 employees",
+        "51_200": "51-200 employees",
+        "over_200": "200+ employees"
+      },
+      "budgetRange": "Budget range",
+      "budgetRangeOptions": {
+        "under_1k": "< $1,000",
+        "1k_5k": "$1,000 - $5,000",
+        "5k_15k": "$5,000 - $15,000",
+        "15k_50k": "$15,000 - $50,000",
+        "over_50k": "> $50,000"
+      },
+      "urgency": "Urgency",
+      "urgencyOptions": {
+        "low": "Low - no rush",
+        "medium": "Medium - next few months",
+        "high": "High - next few weeks",
+        "urgent": "Urgent - as soon as possible"
+      },
+      "email": "Email address",
+      "emailPlaceholder": "your@email.com",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "optional": "Optional fields - help us understand you better"
+    },
+    "confirmation": {
+      "title": "Thank you!",
+      "message": "Your request has been received. We'll get back to you as soon as possible.",
+      "nextSteps": "What happens next?",
+      "backHome": "Back to home"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address"
+    }
+  },
+  "pricing": {
+    "title": "[EN] Choose the plan that fits you",
+    "subtitle": "[EN] Start free and upgrade when you're ready.",
+    "faq": {
+      "title": "[EN] Frequently asked questions",
+      "items": [
+        { "question": "[EN] Can I upgrade or downgrade anytime?", "answer": "[EN] Yes, you can change your plan at any time." },
+        { "question": "[EN] Is there a free trial?", "answer": "[EN] The Free plan is always free. Pro and Studio have a 14-day trial." },
+        { "question": "[EN] What are micro-solutions?", "answer": "[EN] Small, focused software solutions we build based on the problems you submit." }
+      ]
+    },
+    "contact": {
+      "title": "[EN] Need an enterprise solution?",
+      "subtitle": "[EN] Contact us for a custom plan for your organization.",
+      "form": {
+        "name": "[EN] Name",
+        "email": "[EN] Email",
+        "company": "[EN] Company (optional)",
+        "message": "[EN] How can we help?",
+        "submit": "[EN] Submit",
+        "success": "[EN] Thanks! We'll be in touch soon.",
+        "error": "[EN] Something went wrong. Please try again."
+      }
+    }
+  }
+}

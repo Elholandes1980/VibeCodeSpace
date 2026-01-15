@@ -1,0 +1,15 @@
+# Demo images directory
+# Add local images here for the seed script.
+# Expected filenames (matching case slugs):
+# - factuurflow.jpg
+# - codebuddy.jpg
+# - meetingmind.jpg
+# - dashforge.jpg
+# - contentcraft.jpg
+# - bugsniper.jpg
+# - learnloop.jpg
+# - databridge.jpg
+# - pitchdeck.jpg
+# - supportbot.jpg
+#
+# Alternatively, set SEED_ALLOW_EXTERNAL=1 to download from Unsplash.

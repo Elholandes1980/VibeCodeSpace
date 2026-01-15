@@ -1,0 +1,337 @@
+{
+  "common": {
+    "siteName": "VibeCodeSpace",
+    "tagline": "[ES] Software construido en la era del vibecoding"
+  },
+  "nav": {
+    "home": "[ES] Inicio",
+    "explore": "[ES] Explorar",
+    "tools": "[ES] Herramientas",
+    "pulse": "[ES] Pulse",
+    "about": "[ES] Acerca de"
+  },
+  "home": {
+    "hero": {
+      "kicker": "VibeCodeSpace",
+      "headline": "[ES] Donde los constructores de IA muestran lo que es posible hoy.",
+      "subheadline": "[ES] Showcases, noticias y micro-soluciones — para que construyas más rápido.",
+      "primaryCta": "[ES] Ver showcases",
+      "secondaryCta": "[ES] Enviar micro-problema"
+    },
+    "features": {
+      "kicker": "[ES] Lo que obtienes",
+      "title": "[ES] Todo lo que necesitas para construir mejor",
+      "items": [
+        {
+          "icon": "pulse",
+          "title": "[ES] Noticias y tendencias",
+          "description": "[ES] Mantente al día con las últimas herramientas y técnicas de IA.",
+          "href": "/pulse",
+          "cta": "[ES] Ver Pulse"
+        },
+        {
+          "icon": "explore",
+          "title": "[ES] Showcases y casos",
+          "description": "[ES] Aprende de proyectos reales y las lecciones aprendidas.",
+          "href": "/explore",
+          "cta": "[ES] Explorar casos"
+        },
+        {
+          "icon": "workspace",
+          "title": "[ES] Prompts y marcadores",
+          "description": "[ES] Guarda tus prompts favoritos y organiza tu flujo de trabajo.",
+          "href": "/workspace",
+          "cta": "[ES] Próximamente",
+          "comingSoon": true
+        }
+      ]
+    },
+    "showcases": {
+      "kicker": "[ES] Showcases destacados",
+      "title": "[ES] Mira lo que otros construyen",
+      "viewAll": "[ES] Ver todos los casos",
+      "viewCase": "[ES] Ver caso"
+    },
+    "builders": {
+      "kicker": "[ES] Conoce a los constructores",
+      "title": "[ES] Las personas detrás de los proyectos",
+      "viewAll": "[ES] Ver todos los builders",
+      "viewProfile": "[ES] Ver perfil",
+      "casesLabel": "casos"
+    },
+    "audience": {
+      "kicker": "[ES] Para quién",
+      "title": "[ES] Ya sea que construyas solo o en equipo",
+      "items": [
+        {
+          "icon": "builders",
+          "title": "[ES] Constructores individuales",
+          "benefits": ["[ES] Aprende de casos reales", "[ES] Descubre nuevas herramientas", "[ES] Inspírate para tu próximo proyecto"]
+        },
+        {
+          "icon": "teams",
+          "title": "[ES] Equipos y empresas",
+          "benefits": ["[ES] Encuentra soluciones probadas", "[ES] Ahorra tiempo con micro-soluciones", "[ES] Mantente a la vanguardia"]
+        },
+        {
+          "icon": "partners",
+          "title": "[ES] Creadores de herramientas",
+          "benefits": ["[ES] Muestra tu herramienta", "[ES] Sé descubierto por constructores", "[ES] Construye relaciones"]
+        }
+      ]
+    },
+    "pricing": {
+      "kicker": "[ES] Precios",
+      "title": "[ES] Elige el plan que te convenga",
+      "subtitle": "[ES] Comienza gratis y mejora cuando estés listo.",
+      "contactSales": "[ES] ¿Preguntas sobre Enterprise? Contáctanos →",
+      "plans": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": "€0",
+          "period": "mes",
+          "description": "[ES] Perfecto para empezar",
+          "features": ["[ES] Ver todos los showcases", "[ES] Leer Pulse", "[ES] Búsqueda básica"],
+          "cta": "[ES] Empezar gratis"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": "€19",
+          "period": "mes",
+          "description": "[ES] Para constructores activos",
+          "features": ["[ES] Todo en Free", "[ES] Workspace", "[ES] Filtros avanzados", "[ES] Prioridad", "[ES] Sesiones mensuales"],
+          "cta": "[ES] Mejorar a Pro",
+          "highlighted": true,
+          "badge": "[ES] Más popular"
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "price": "€49",
+          "period": "mes",
+          "description": "[ES] Para equipos hasta 5",
+          "features": ["[ES] Todo en Pro", "[ES] Team workspace", "[ES] Prompts compartidos", "[ES] Soporte dedicado", "[ES] Onboarding"],
+          "cta": "[ES] Elegir Studio"
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "",
+          "description": "[ES] Para organizaciones grandes",
+          "features": ["[ES] Todo en Studio", "[ES] Miembros ilimitados", "[ES] SSO", "[ES] Integraciones", "[ES] Account manager"],
+          "cta": "[ES] Contactar"
+        }
+      ]
+    },
+    "newsletter": {
+      "kicker": "[ES] Mantente actualizado",
+      "title": "[ES] Recibe el Pulse semanal",
+      "description": "[ES] Las mejores herramientas de IA y casos en tu inbox cada semana.",
+      "placeholder": "tu@email.com",
+      "button": "[ES] Suscribirse",
+      "success": "[ES] ¡Bienvenido! Revisa tu inbox.",
+      "error": "[ES] Algo salió mal. Intenta de nuevo."
+    }
+  },
+  "explore": {
+    "title": "[ES] Explorar",
+    "description": "[ES] Descubre lo que los constructores están creando en la era del vibecoding.",
+    "filters": {
+      "all": "[ES] Todos",
+      "tags": "[ES] Etiquetas",
+      "tools": "[ES] Herramientas"
+    },
+    "empty": {
+      "title": "[ES] No se encontraron casos",
+      "description": "[ES] No hay casos que coincidan con tus filtros. Prueba otros filtros o ve todos los casos.",
+      "clearFilters": "[ES] Limpiar filtros"
+    },
+    "loading": "[ES] Cargando casos..."
+  },
+  "tools": {
+    "title": "[ES] Herramientas",
+    "description": "[ES] Herramientas y tecnologías utilizadas en proyectos de vibecoding."
+  },
+  "pulse": {
+    "title": "[ES] Pulse",
+    "description": "[ES] Actualizaciones curadas del mundo del desarrollo asistido por IA."
+  },
+  "about": {
+    "title": "[ES] Acerca de",
+    "description": "[ES] Aprende más sobre VibeCodeSpace y nuestra misión."
+  },
+  "caseDetail": {
+    "sections": {
+      "problem": "El problema",
+      "solution": "La solución",
+      "stack": "Tecnología",
+      "learnings": "Lo que aprendimos"
+    },
+    "cta": {
+      "title": "¿Construiste algo con IA?",
+      "description": "Comparte tu proyecto con la comunidad vibecoding. ¿O tienes un problema que podemos resolver?",
+      "button": "Envía tu caso"
+    },
+    "relatedCases": {
+      "title": "Descubre más casos",
+      "viewCase": "Ver caso"
+    },
+    "meta": {
+      "titleSuffix": "| VibeCodeSpace",
+      "defaultDescription": "Descubre cómo se resolvió este problema con desarrollo asistido por IA."
+    },
+    "notFound": {
+      "title": "Caso no encontrado",
+      "description": "Este caso no existe o ya no está disponible.",
+      "backToExplore": "Volver a Explorar"
+    },
+    "loading": "Cargando caso..."
+  },
+  "builders": {
+    "title": "Builders",
+    "description": "Descubre a las personas detrás de los proyectos. Constructores AI-native creando el futuro.",
+    "filters": {
+      "all": "Todos",
+      "plans": "Plan",
+      "free": "Free",
+      "pro": "Pro",
+      "studio": "Studio"
+    },
+    "card": {
+      "cases": "casos",
+      "followers": "seguidores",
+      "viewProfile": "Ver perfil"
+    },
+    "empty": {
+      "title": "No se encontraron builders",
+      "description": "No hay builders que coincidan con tus filtros. Prueba otros filtros.",
+      "clearFilters": "Limpiar filtros"
+    },
+    "loading": "Cargando builders..."
+  },
+  "builderDetail": {
+    "sections": {
+      "about": "Acerca de",
+      "cases": "Casos",
+      "links": "Enlaces"
+    },
+    "social": {
+      "followers": "Seguidores",
+      "following": "Siguiendo",
+      "posts": "Posts"
+    },
+    "cta": {
+      "contactTitle": "Ponte en contacto",
+      "contactDescription": "¿Quieres colaborar con este builder?",
+      "registerToContact": "Regístrate para contactar",
+      "contact": "Contactar"
+    },
+    "badges": {
+      "pro": "Pro",
+      "studio": "Studio",
+      "featured": "Destacado"
+    },
+    "empty": {
+      "noCases": "Este builder aún no ha publicado casos."
+    },
+    "notFound": {
+      "title": "Builder no encontrado",
+      "description": "Este builder no existe o ya no está disponible.",
+      "backToBuilders": "Volver a Builders"
+    },
+    "loading": "Cargando builder..."
+  },
+  "footer": {
+    "copyright": "[ES] Todos los derechos reservados.",
+    "contact": "[ES] Contacto",
+    "privacy": "[ES] Privacidad",
+    "terms": "[ES] Términos"
+  },
+  "intake": {
+    "title": "Describe tu problema",
+    "subtitle": "Cuéntanos sobre el problema que quieres resolver. Te responderemos en 48 horas.",
+    "form": {
+      "title": "Título",
+      "titlePlaceholder": "Breve y claro: ¿cuál es el problema principal?",
+      "problemDescription": "Descripción del problema",
+      "problemDescriptionPlaceholder": "Describe el problema en detalle. ¿Qué está pasando ahora? ¿Cuáles son las consecuencias?",
+      "desiredOutcome": "Resultado deseado",
+      "desiredOutcomePlaceholder": "¿Cómo sería la situación ideal? ¿Cómo defines el éxito?",
+      "country": "País",
+      "countryPlaceholder": "España",
+      "language": "Idioma preferido",
+      "languageOptions": {
+        "nl": "Holandés",
+        "en": "Inglés",
+        "es": "Español",
+        "other": "Otro"
+      },
+      "companySize": "Tamaño de empresa",
+      "companySizeOptions": {
+        "solo": "Solo / Freelancer",
+        "2_10": "2-10 empleados",
+        "11_50": "11-50 empleados",
+        "51_200": "51-200 empleados",
+        "over_200": "200+ empleados"
+      },
+      "budgetRange": "Rango de presupuesto",
+      "budgetRangeOptions": {
+        "under_1k": "< €1.000",
+        "1k_5k": "€1.000 - €5.000",
+        "5k_15k": "€5.000 - €15.000",
+        "15k_50k": "€15.000 - €50.000",
+        "over_50k": "> €50.000"
+      },
+      "urgency": "Urgencia",
+      "urgencyOptions": {
+        "low": "Baja - sin prisa",
+        "medium": "Media - próximos meses",
+        "high": "Alta - próximas semanas",
+        "urgent": "Urgente - lo antes posible"
+      },
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "submit": "Enviar",
+      "submitting": "Enviando...",
+      "optional": "Campos opcionales - ayúdanos a entenderte mejor"
+    },
+    "confirmation": {
+      "title": "¡Gracias!",
+      "message": "Tu solicitud ha sido recibida. Te responderemos lo antes posible.",
+      "nextSteps": "¿Qué pasa ahora?",
+      "backHome": "Volver al inicio"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio",
+      "invalidEmail": "Por favor introduce un correo electrónico válido"
+    }
+  },
+  "pricing": {
+    "title": "[ES] Elige el plan que te convenga",
+    "subtitle": "[ES] Comienza gratis y mejora cuando estés listo.",
+    "faq": {
+      "title": "[ES] Preguntas frecuentes",
+      "items": [
+        { "question": "[ES] ¿Puedo actualizar o degradar en cualquier momento?", "answer": "[ES] Sí, puedes cambiar tu plan en cualquier momento." },
+        { "question": "[ES] ¿Hay período de prueba?", "answer": "[ES] El plan Free siempre es gratis. Pro y Studio tienen 14 días de prueba." },
+        { "question": "[ES] ¿Qué son las micro-soluciones?", "answer": "[ES] Soluciones de software pequeñas y enfocadas basadas en los problemas que envías." }
+      ]
+    },
+    "contact": {
+      "title": "[ES] ¿Necesitas una solución empresarial?",
+      "subtitle": "[ES] Contáctanos para un plan personalizado.",
+      "form": {
+        "name": "[ES] Nombre",
+        "email": "[ES] Correo electrónico",
+        "company": "[ES] Empresa (opcional)",
+        "message": "[ES] ¿Cómo podemos ayudarte?",
+        "submit": "[ES] Enviar",
+        "success": "[ES] ¡Gracias! Te contactaremos pronto.",
+        "error": "[ES] Algo salió mal. Intenta de nuevo."
+      }
+    }
+  }
+}

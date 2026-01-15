@@ -1,0 +1,380 @@
+{
+  "common": {
+    "siteName": "VibeCodeSpace",
+    "tagline": "Software gebouwd in het vibecoding-tijdperk"
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Ontdek",
+    "tools": "Tools",
+    "pulse": "Pulse",
+    "about": "Over ons"
+  },
+  "home": {
+    "hero": {
+      "kicker": "VibeCodeSpace",
+      "headline": "De plek waar AI-bouwers laten zien wat er nu al kan.",
+      "subheadline": "Showcases, nieuws en micro-oplossingen — zodat jij sneller bouwt en betere keuzes maakt.",
+      "primaryCta": "Bekijk showcases",
+      "secondaryCta": "Dien micro-probleem in"
+    },
+    "features": {
+      "kicker": "Wat je krijgt",
+      "title": "Alles wat je nodig hebt om slimmer te bouwen",
+      "items": [
+        {
+          "icon": "pulse",
+          "title": "Nieuws & trends",
+          "description": "Blijf op de hoogte van de nieuwste AI-tools, technieken en best practices in de wereld van vibecoding.",
+          "href": "/pulse",
+          "cta": "Bekijk Pulse"
+        },
+        {
+          "icon": "explore",
+          "title": "Showcases & cases",
+          "description": "Leer van echte projecten. Zie welke tools anderen gebruiken en welke lessen ze hebben geleerd.",
+          "href": "/explore",
+          "cta": "Ontdek cases"
+        },
+        {
+          "icon": "workspace",
+          "title": "Prompts & bookmarks",
+          "description": "Bewaar je favoriete prompts, maak notities en organiseer je workflow op één plek.",
+          "href": "/workspace",
+          "cta": "Binnenkort beschikbaar",
+          "comingSoon": true
+        }
+      ]
+    },
+    "showcases": {
+      "kicker": "Uitgelichte showcases",
+      "title": "Kijk wat anderen bouwen",
+      "viewAll": "Bekijk alle cases",
+      "viewCase": "Bekijk case"
+    },
+    "builders": {
+      "kicker": "Ontmoet de bouwers",
+      "title": "De mensen achter de projecten",
+      "viewAll": "Bekijk alle builders",
+      "viewProfile": "Bekijk profiel",
+      "casesLabel": "cases"
+    },
+    "audience": {
+      "kicker": "Voor wie",
+      "title": "Of je nu solo bouwt of in een team",
+      "items": [
+        {
+          "icon": "builders",
+          "title": "Individuele bouwers",
+          "benefits": [
+            "Leer van echte case studies",
+            "Ontdek nieuwe tools en technieken",
+            "Krijg inspiratie voor je volgende project"
+          ]
+        },
+        {
+          "icon": "teams",
+          "title": "Teams & bedrijven",
+          "benefits": [
+            "Vind bewezen oplossingen voor jouw uitdagingen",
+            "Bespaar tijd met micro-oplossingen op maat",
+            "Blijf voorop in AI-assisted development"
+          ]
+        },
+        {
+          "icon": "partners",
+          "title": "Tool makers & partners",
+          "benefits": [
+            "Showcase je tool aan de juiste doelgroep",
+            "Word ontdekt door actieve bouwers",
+            "Bouw relaties in de vibecoding community"
+          ]
+        }
+      ]
+    },
+    "pricing": {
+      "kicker": "Prijzen",
+      "title": "Kies het plan dat bij je past",
+      "subtitle": "Begin gratis en upgrade wanneer je klaar bent voor meer.",
+      "contactSales": "Vragen over Enterprise? Neem contact op →",
+      "plans": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": "€0",
+          "period": "maand",
+          "description": "Perfect om te beginnen",
+          "features": [
+            "Bekijk alle showcases",
+            "Lees Pulse updates",
+            "Basis zoekfunctie"
+          ],
+          "cta": "Start gratis"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": "€19",
+          "period": "maand",
+          "description": "Voor actieve bouwers",
+          "features": [
+            "Alles in Free",
+            "Workspace met prompts & bookmarks",
+            "Geavanceerde filters",
+            "Prioriteit bij micro-oplossingen",
+            "Maandelijkse deep-dive sessies"
+          ],
+          "cta": "Upgrade naar Pro",
+          "highlighted": true,
+          "badge": "Meest gekozen"
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "price": "€49",
+          "period": "maand",
+          "description": "Voor teams tot 5 personen",
+          "features": [
+            "Alles in Pro",
+            "Team workspace",
+            "Gedeelde prompts & templates",
+            "Dedicated support",
+            "Custom onboarding"
+          ],
+          "cta": "Kies Studio"
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "",
+          "description": "Voor grotere organisaties",
+          "features": [
+            "Alles in Studio",
+            "Onbeperkte teamleden",
+            "SSO & security controls",
+            "Custom integraties",
+            "Dedicated account manager"
+          ],
+          "cta": "Neem contact op"
+        }
+      ]
+    },
+    "newsletter": {
+      "kicker": "Blijf op de hoogte",
+      "title": "Ontvang de wekelijkse Pulse",
+      "description": "Elke week de beste AI-tools, cases en insights direct in je inbox.",
+      "placeholder": "jouw@email.nl",
+      "button": "Aanmelden",
+      "success": "Welkom! Check je inbox voor bevestiging.",
+      "error": "Er ging iets mis. Probeer het opnieuw."
+    }
+  },
+  "explore": {
+    "title": "Ontdek",
+    "description": "Ontdek wat bouwers creëren in het vibecoding-tijdperk.",
+    "filters": {
+      "all": "Alle",
+      "tags": "Tags",
+      "tools": "Tools"
+    },
+    "empty": {
+      "title": "Geen cases gevonden",
+      "description": "Er zijn geen cases die overeenkomen met je filters. Probeer andere filters of bekijk alle cases.",
+      "clearFilters": "Filters wissen"
+    },
+    "loading": "Cases laden..."
+  },
+  "tools": {
+    "title": "Tools",
+    "description": "Tools en technologieën gebruikt in vibecoding-projecten."
+  },
+  "pulse": {
+    "title": "Pulse",
+    "description": "Gecureerde updates uit de wereld van AI-assisted development."
+  },
+  "about": {
+    "title": "Over ons",
+    "description": "Leer meer over VibeCodeSpace en onze missie."
+  },
+  "caseDetail": {
+    "sections": {
+      "problem": "Het probleem",
+      "solution": "De oplossing",
+      "stack": "Technologie",
+      "learnings": "Wat we hiervan leerden"
+    },
+    "cta": {
+      "title": "Ook iets gebouwd met AI?",
+      "description": "Deel je project met de vibecoding community. Of heb je een probleem dat we kunnen oplossen?",
+      "button": "Dien je case in"
+    },
+    "relatedCases": {
+      "title": "Meer cases ontdekken",
+      "viewCase": "Bekijk case"
+    },
+    "meta": {
+      "titleSuffix": "| VibeCodeSpace",
+      "defaultDescription": "Ontdek hoe dit probleem werd opgelost met AI-assisted development."
+    },
+    "notFound": {
+      "title": "Case niet gevonden",
+      "description": "Deze case bestaat niet of is niet meer beschikbaar.",
+      "backToExplore": "Terug naar Ontdek"
+    },
+    "loading": "Case laden..."
+  },
+  "builders": {
+    "title": "Builders",
+    "description": "Ontdek de mensen achter de projecten. AI-native bouwers die de toekomst creëren.",
+    "filters": {
+      "all": "Alle",
+      "plans": "Plan",
+      "free": "Free",
+      "pro": "Pro",
+      "studio": "Studio"
+    },
+    "card": {
+      "cases": "cases",
+      "followers": "volgers",
+      "viewProfile": "Bekijk profiel"
+    },
+    "empty": {
+      "title": "Geen builders gevonden",
+      "description": "Er zijn geen builders die overeenkomen met je filters. Probeer andere filters.",
+      "clearFilters": "Filters wissen"
+    },
+    "loading": "Builders laden..."
+  },
+  "builderDetail": {
+    "sections": {
+      "about": "Over",
+      "cases": "Cases",
+      "links": "Links"
+    },
+    "social": {
+      "followers": "Volgers",
+      "following": "Volgend",
+      "posts": "Posts"
+    },
+    "cta": {
+      "contactTitle": "Neem contact op",
+      "contactDescription": "Wil je samenwerken met deze builder?",
+      "registerToContact": "Registreer om contact op te nemen",
+      "contact": "Contact"
+    },
+    "badges": {
+      "pro": "Pro",
+      "studio": "Studio",
+      "featured": "Uitgelicht"
+    },
+    "empty": {
+      "noCases": "Deze builder heeft nog geen cases gepubliceerd."
+    },
+    "notFound": {
+      "title": "Builder niet gevonden",
+      "description": "Deze builder bestaat niet of is niet meer beschikbaar.",
+      "backToBuilders": "Terug naar Builders"
+    },
+    "loading": "Builder laden..."
+  },
+  "footer": {
+    "copyright": "Alle rechten voorbehouden.",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Voorwaarden"
+  },
+  "intake": {
+    "title": "Beschrijf je probleem",
+    "subtitle": "Vertel ons over het probleem dat je wilt oplossen. We nemen binnen 48 uur contact met je op.",
+    "form": {
+      "title": "Titel",
+      "titlePlaceholder": "Kort en krachtig: wat is het kernprobleem?",
+      "problemDescription": "Probleembeschrijving",
+      "problemDescriptionPlaceholder": "Beschrijf het probleem in detail. Wat gebeurt er nu? Wat zijn de gevolgen?",
+      "desiredOutcome": "Gewenste uitkomst",
+      "desiredOutcomePlaceholder": "Wat zou de ideale situatie zijn? Hoe ziet succes eruit?",
+      "country": "Land",
+      "countryPlaceholder": "Nederland",
+      "language": "Voorkeurstaal",
+      "languageOptions": {
+        "nl": "Nederlands",
+        "en": "Engels",
+        "es": "Spaans",
+        "other": "Anders"
+      },
+      "companySize": "Bedrijfsgrootte",
+      "companySizeOptions": {
+        "solo": "Solo / Freelancer",
+        "2_10": "2-10 medewerkers",
+        "11_50": "11-50 medewerkers",
+        "51_200": "51-200 medewerkers",
+        "over_200": "200+ medewerkers"
+      },
+      "budgetRange": "Budget indicatie",
+      "budgetRangeOptions": {
+        "under_1k": "< €1.000",
+        "1k_5k": "€1.000 - €5.000",
+        "5k_15k": "€5.000 - €15.000",
+        "15k_50k": "€15.000 - €50.000",
+        "over_50k": "> €50.000"
+      },
+      "urgency": "Urgentie",
+      "urgencyOptions": {
+        "low": "Laag - geen haast",
+        "medium": "Gemiddeld - komende maanden",
+        "high": "Hoog - komende weken",
+        "urgent": "Urgent - zo snel mogelijk"
+      },
+      "email": "E-mailadres",
+      "emailPlaceholder": "jouw@email.nl",
+      "submit": "Versturen",
+      "submitting": "Bezig met versturen...",
+      "optional": "Optionele velden - help ons je beter te begrijpen"
+    },
+    "confirmation": {
+      "title": "Bedankt!",
+      "message": "Je aanvraag is succesvol ontvangen. We nemen zo snel mogelijk contact met je op.",
+      "nextSteps": "Wat gebeurt er nu?",
+      "backHome": "Terug naar home"
+    },
+    "validation": {
+      "required": "Dit veld is verplicht",
+      "invalidEmail": "Voer een geldig e-mailadres in"
+    }
+  },
+  "pricing": {
+    "title": "Kies het plan dat bij je past",
+    "subtitle": "Begin gratis en upgrade wanneer je klaar bent voor meer.",
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "items": [
+        {
+          "question": "Kan ik op elk moment upgraden of downgraden?",
+          "answer": "Ja, je kunt op elk moment je plan wijzigen. Bij een upgrade wordt het verschil direct berekend. Bij een downgrade gaat de wijziging in bij je volgende factuurdatum."
+        },
+        {
+          "question": "Is er een gratis proefperiode?",
+          "answer": "Het Free plan blijft altijd gratis. Voor Pro en Studio kun je 14 dagen gratis uitproberen voordat je betaalt."
+        },
+        {
+          "question": "Wat zijn micro-oplossingen?",
+          "answer": "Micro-oplossingen zijn kleine, gerichte software-oplossingen die we bouwen op basis van de problemen die je indient. Pro en Studio leden krijgen prioriteit bij de verwerking."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Enterprise oplossing nodig?",
+      "subtitle": "Neem contact met ons op voor een plan op maat voor jouw organisatie.",
+      "form": {
+        "name": "Naam",
+        "email": "E-mailadres",
+        "company": "Bedrijf (optioneel)",
+        "message": "Waar kunnen we je mee helpen?",
+        "submit": "Versturen",
+        "success": "Bedankt! We nemen zo snel mogelijk contact met je op.",
+        "error": "Er ging iets mis. Probeer het opnieuw."
+      }
+    }
+  }
+}
