@@ -44,11 +44,51 @@ const SAMPLE_TAGS = [
 ]
 
 const SAMPLE_TOOLS = [
-  { slug: 'claude', name: 'Claude' },
-  { slug: 'cursor', name: 'Cursor' },
-  { slug: 'v0', name: 'v0' },
-  { slug: 'chatgpt', name: 'ChatGPT' },
-  { slug: 'copilot', name: 'GitHub Copilot' },
+  {
+    slug: 'claude',
+    name: 'Claude',
+    shortOneLiner: 'AI assistent van Anthropic voor coderen en redeneren',
+    description: 'Claude is een geavanceerde AI-assistent gemaakt door Anthropic. Uitstekend voor complexe codeertaken, lange gesprekken en gedetailleerde analyses. Bekend om veiligheid en betrouwbaarheid.',
+    websiteUrl: 'https://claude.ai',
+    pricingModel: 'freemium',
+    pricingFrom: 'Gratis tier',
+  },
+  {
+    slug: 'cursor',
+    name: 'Cursor',
+    shortOneLiner: 'AI-first code editor gebouwd op VS Code',
+    description: 'Cursor is een AI-gestuurde code editor die VS Code uitbreidt met diepe AI-integratie. Perfect voor pair programming met AI en snelle codebase navigatie.',
+    websiteUrl: 'https://cursor.sh',
+    pricingModel: 'freemium',
+    pricingFrom: '$20/maand',
+  },
+  {
+    slug: 'v0',
+    name: 'v0',
+    shortOneLiner: 'AI UI generator van Vercel voor React componenten',
+    description: 'v0 van Vercel genereert React componenten en volledige UI\'s uit tekstbeschrijvingen. Ideaal voor snel prototypen en het bouwen van moderne interfaces met shadcn/ui.',
+    websiteUrl: 'https://v0.dev',
+    pricingModel: 'freemium',
+    pricingFrom: 'Gratis tier',
+  },
+  {
+    slug: 'chatgpt',
+    name: 'ChatGPT',
+    shortOneLiner: 'OpenAI\'s populaire AI chatbot voor alles',
+    description: 'ChatGPT is de meest gebruikte AI-chatbot ter wereld. Veelzijdig inzetbaar voor coderen, schrijven, analyseren en brainstormen. Beschikbaar met GPT-4 voor geavanceerde taken.',
+    websiteUrl: 'https://chat.openai.com',
+    pricingModel: 'freemium',
+    pricingFrom: '$20/maand',
+  },
+  {
+    slug: 'copilot',
+    name: 'GitHub Copilot',
+    shortOneLiner: 'AI code completion direct in je editor',
+    description: 'GitHub Copilot biedt AI-gestuurde code suggesties direct in je IDE. Getraind op miljarden regels code en geïntegreerd met VS Code, JetBrains en meer.',
+    websiteUrl: 'https://github.com/features/copilot',
+    pricingModel: 'paid',
+    pricingFrom: '$10/maand',
+  },
 ]
 
 // Sample cases - NL only, translations via API
