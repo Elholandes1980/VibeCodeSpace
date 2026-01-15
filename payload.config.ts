@@ -2,7 +2,7 @@
  * payload.config.ts
  *
  * Payload CMS configuration - single source of truth for public content.
- * Uses SQLite for local storage.
+ * Uses Turso (cloud SQLite) in production, local SQLite file in development.
  * Localization enabled: nl (default), en, es.
  *
  * Architecture:
@@ -32,6 +32,29 @@ import { SiteGlobal, CoursePromo, Navigation, ToolsSettings } from './payload/gl
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Database configuration: Turso in production, local SQLite in development
+const getDatabaseAdapter = () => {
+  const tursoUrl = process.env.TURSO_DATABASE_URL
+  const tursoToken = process.env.TURSO_AUTH_TOKEN
+
+  if (tursoUrl && tursoToken) {
+    // Production: Use Turso (cloud SQLite)
+    return sqliteAdapter({
+      client: {
+        url: tursoUrl,
+        authToken: tursoToken,
+      },
+    })
+  }
+
+  // Development: Use local SQLite file
+  return sqliteAdapter({
+    client: {
+      url: `file:${path.resolve(dirname, 'payload.db')}`,
+    },
+  })
+}
 
 export default buildConfig({
   // === Localization ===
@@ -114,11 +137,7 @@ export default buildConfig({
   },
 
   // === Database ===
-  db: sqliteAdapter({
-    client: {
-      url: `file:${path.resolve(dirname, 'payload.db')}`,
-    },
-  }),
+  db: getDatabaseAdapter(),
 
   // === Upload Storage ===
   upload: {
