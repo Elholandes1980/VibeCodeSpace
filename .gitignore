@@ -43,7 +43,7 @@ yarn-error.log*
 payload.db
 payload*.db
 payload.db.backup
-payload-types.ts
+# payload-types.ts (now committed for Vercel build)
 
 # Convex (generated files now committed for Vercel build)
 # convex/_generated
