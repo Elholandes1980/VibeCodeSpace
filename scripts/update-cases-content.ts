@@ -5,8 +5,17 @@
  * Run with: npx tsx scripts/update-cases-content.ts
  */
 
+// CRITICAL: Load env vars BEFORE any other imports
 import { config as dotenvConfig } from 'dotenv'
 dotenvConfig({ path: '.env.local' })
+
+// Verify DATABASE_URL is loaded (should connect to PostgreSQL, not SQLite)
+if (!process.env.DATABASE_URL) {
+  console.error('❌ DATABASE_URL not set! Script would use local SQLite instead of PostgreSQL.')
+  console.error('   Make sure .env.local contains DATABASE_URL')
+  process.exit(1)
+}
+console.log('✓ DATABASE_URL loaded:', process.env.DATABASE_URL.substring(0, 50) + '...')
 
 import { getPayload } from 'payload'
 import config from '../payload.config'
