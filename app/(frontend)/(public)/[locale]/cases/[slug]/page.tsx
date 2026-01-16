@@ -50,7 +50,7 @@ export async function generateMetadata({
     '/og-default.png'
 
   // Build base URL for alternates
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vibecodespace.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vibecodespace.com'
 
   return {
     title,

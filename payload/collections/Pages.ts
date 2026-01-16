@@ -33,9 +33,9 @@ export const Pages: CollectionConfig = {
         const slug = data?.slug || 'home'
         const localePrefix = locale || 'nl'
         if (slug === 'home') {
-          return `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/${localePrefix}`
+          return `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/${localePrefix}`
         }
-        return `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/${localePrefix}/${slug}`
+        return `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/${localePrefix}/${slug}`
       },
     },
   },

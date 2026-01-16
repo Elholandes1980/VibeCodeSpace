@@ -614,6 +614,7 @@ async function updateCases() {
           solution: content.solution,
           learnings: content.learnings,
           stack: content.stack,
+          status: 'published', // CRITICAL: Must be published to show in frontend
         },
       })
 
