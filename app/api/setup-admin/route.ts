@@ -13,13 +13,13 @@ export async function GET() {
   try {
     const payload = await getPayload({ config })
 
-    // Check if users exist
-    const existing = await payload.find({ collection: 'users', limit: 1 })
-    if (existing.totalDocs > 0) {
-      return NextResponse.json({ error: 'Users already exist', count: existing.totalDocs })
+    // Delete ALL existing users first
+    const existing = await payload.find({ collection: 'users', limit: 100 })
+    for (const user of existing.docs) {
+      await payload.delete({ collection: 'users', id: user.id })
     }
 
-    // Create admin user
+    // Create fresh admin user
     const user = await payload.create({
       collection: 'users',
       data: {
@@ -33,7 +33,8 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       email: user.email,
-      message: 'Login with email: david@solmatebusiness.com, password: admin123'
+      password: 'admin123',
+      message: 'User created! Login now at /admin/login'
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
