@@ -58,6 +58,9 @@ const getDatabaseAdapter = () => {
 }
 
 export default buildConfig({
+  // === Server URL (required for production) ===
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
+
   // === Localization ===
   localization: {
     locales: [
