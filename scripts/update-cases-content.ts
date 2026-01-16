@@ -602,7 +602,7 @@ async function updateCases() {
 
     try {
       // Update with rich content in NL (source locale)
-      // This will trigger the autoTranslate hook
+      // Skip translation to avoid Neon timeout during bulk updates
       await payload.update({
         collection: 'cases',
         id: caseDoc.id,
@@ -616,6 +616,7 @@ async function updateCases() {
           stack: content.stack,
           status: 'published', // CRITICAL: Must be published to show in frontend
         },
+        context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
       })
 
       console.log(`✓ Updated: ${slug}`)
