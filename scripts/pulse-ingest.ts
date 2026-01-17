@@ -14,17 +14,12 @@
  * - app/(frontend)/(api)/api/cron/pulse-ingest/route.ts
  */
 
-import { config as dotenvConfig } from 'dotenv'
-dotenvConfig({ path: '.env.local' })
-
-if (!process.env.DATABASE_URL) {
-  console.error('❌ DATABASE_URL not set!')
-  process.exit(1)
-}
-
-if (!process.env.ANTHROPIC_API_KEY) {
-  console.error('❌ ANTHROPIC_API_KEY not set!')
-  process.exit(1)
+// Only load dotenv when running as CLI script (not when imported as module)
+// This prevents build errors since dotenv is not bundled for Next.js
+const isDirectRun = require.main === module
+if (isDirectRun) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  require('dotenv').config({ path: '.env.local' })
 }
 
 import Parser from 'rss-parser'
