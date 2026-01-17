@@ -105,9 +105,6 @@ export default async function ToolDetailPage({ params }: ToolDetailPageProps) {
 
   // Extract media
   const logo = tool.logo && typeof tool.logo === 'object' ? (tool.logo as Media) : null
-  const featuredImage = tool.featuredImage && typeof tool.featuredImage === 'object'
-    ? (tool.featuredImage as Media)
-    : null
   const category = tool.category && typeof tool.category === 'object'
     ? (tool.category as ToolCategoryDoc)
     : null
@@ -275,6 +272,24 @@ export default async function ToolDetailPage({ params }: ToolDetailPageProps) {
         </Container>
       </Section>
 
+      {/* Screenshot Hero - Premium Visual */}
+      {(tool.screenshotUrl || tool.ogImageUrl) && (
+        <Section size="sm" className="pb-0">
+          <Container>
+            <div className="relative rounded-xl overflow-hidden border border-border shadow-lg bg-muted">
+              <img
+                src={tool.screenshotUrl || tool.ogImageUrl || ''}
+                alt={`${tool.name} - interface screenshot`}
+                className="w-full h-auto"
+                loading="eager"
+              />
+              {/* Gradient overlay for visual polish */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+            </div>
+          </Container>
+        </Section>
+      )}
+
       {/* Content Sections */}
       <Section size="default">
         <Container>
@@ -338,20 +353,6 @@ export default async function ToolDetailPage({ params }: ToolDetailPageProps) {
         </Container>
       </Section>
 
-      {/* Featured Image */}
-      {(featuredImage || tool.ogImageUrl) && (
-        <Section size="sm">
-          <Container>
-            <div className="rounded-xl overflow-hidden border border-border">
-              <img
-                src={featuredImage?.url || tool.ogImageUrl || ''}
-                alt={featuredImage?.alt || `${tool.name} screenshot`}
-                className="w-full h-auto"
-              />
-            </div>
-          </Container>
-        </Section>
-      )}
 
       {/* Bottom CTA */}
       <Section size="default" className="bg-muted/30">

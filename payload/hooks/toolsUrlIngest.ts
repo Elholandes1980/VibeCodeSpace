@@ -10,17 +10,21 @@
  * - metaDescription (from meta description)
  * - ogImageUrl (from og:image)
  * - faviconUrl (from link[rel="icon"])
- * - shortOneLiner, description (generated from meta if empty)
+ * - shortOneLiner, description (AI-generated or template-based)
+ * - bestFor, notFor, keyFeatures (AI-generated when API key available)
  * - pricingModel (inferred from keywords)
+ * - screenshotUrl (via thum.io)
  *
  * Sets status='review' and lastIngestedAt after ingest.
  * Resilient: stores errors in ingestError, never throws fatal errors.
  *
  * Related:
  * - payload/collections/Tools.ts
+ * - lib/ai/content-generator.ts
  */
 
 import type { CollectionBeforeChangeHook } from 'payload'
+import { generateToolContent } from '@/lib/ai/content-generator'
 
 interface IngestResult {
   metaTitle?: string
@@ -320,22 +324,61 @@ export const toolsUrlIngestHook: CollectionBeforeChangeHook = async ({
       data.pricingModel = meta.pricingModel
     }
 
-    // Generate placeholder content for empty fields
-    const toolName = (data.metaTitle as string) || meta.ogTitle || 'Deze tool'
-    const placeholders = generatePlaceholderContent(meta, toolName)
+    // Generate AI-powered content for empty fields
+    const toolName = (data.name as string) || meta.ogTitle || meta.metaTitle || 'Tool'
 
-    // Only fill empty fields
-    if (!data.shortOneLiner && placeholders.shortOneLiner) {
-      data.shortOneLiner = placeholders.shortOneLiner
+    // Get category name if available
+    let categoryName: string | undefined
+    if (data.category && typeof data.category === 'object' && 'title' in data.category) {
+      categoryName = data.category.title as string
     }
-    if (!data.description && placeholders.description) {
-      data.description = placeholders.description
-    }
-    if ((!data.bestFor || (Array.isArray(data.bestFor) && data.bestFor.length === 0)) && placeholders.bestFor) {
-      data.bestFor = placeholders.bestFor
-    }
-    if ((!data.notFor || (Array.isArray(data.notFor) && data.notFor.length === 0)) && placeholders.notFor) {
-      data.notFor = placeholders.notFor
+
+    try {
+      console.log(`[toolsUrlIngest] Generating content for: ${toolName}`)
+      const generatedContent = await generateToolContent({
+        name: toolName,
+        websiteUrl: data.websiteUrl as string,
+        metaTitle: meta.metaTitle,
+        metaDescription: meta.metaDescription,
+        ogDescription: meta.ogDescription,
+        pricingModel: data.pricingModel as string | undefined,
+        category: categoryName,
+      })
+
+      // Only fill empty fields
+      if (!data.shortOneLiner && generatedContent.shortOneLiner) {
+        data.shortOneLiner = generatedContent.shortOneLiner
+      }
+      if (!data.description && generatedContent.description) {
+        data.description = generatedContent.description
+      }
+      if ((!data.bestFor || (Array.isArray(data.bestFor) && data.bestFor.length === 0)) && generatedContent.bestFor.length > 0) {
+        data.bestFor = generatedContent.bestFor
+      }
+      if ((!data.notFor || (Array.isArray(data.notFor) && data.notFor.length === 0)) && generatedContent.notFor.length > 0) {
+        data.notFor = generatedContent.notFor
+      }
+      if ((!data.keyFeatures || (Array.isArray(data.keyFeatures) && data.keyFeatures.length === 0)) && generatedContent.keyFeatures.length > 0) {
+        data.keyFeatures = generatedContent.keyFeatures
+      }
+
+      console.log(`[toolsUrlIngest] Content generated successfully`)
+    } catch (contentError) {
+      console.error(`[toolsUrlIngest] Content generation failed:`, contentError)
+      // Fall back to basic placeholder content
+      const placeholders = generatePlaceholderContent(meta, toolName)
+      if (!data.shortOneLiner && placeholders.shortOneLiner) {
+        data.shortOneLiner = placeholders.shortOneLiner
+      }
+      if (!data.description && placeholders.description) {
+        data.description = placeholders.description
+      }
+      if ((!data.bestFor || (Array.isArray(data.bestFor) && data.bestFor.length === 0)) && placeholders.bestFor) {
+        data.bestFor = placeholders.bestFor
+      }
+      if ((!data.notFor || (Array.isArray(data.notFor) && data.notFor.length === 0)) && placeholders.notFor) {
+        data.notFor = placeholders.notFor
+      }
     }
 
     // Set status to review
