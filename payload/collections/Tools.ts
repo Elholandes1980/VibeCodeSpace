@@ -341,6 +341,14 @@ export const Tools: CollectionConfig = {
             description: 'Auto-captured from metadata',
           },
         },
+        {
+          name: 'screenshotUrl',
+          type: 'text',
+          label: 'Screenshot URL',
+          admin: {
+            description: 'Auto-generated website screenshot (via thum.io)',
+          },
+        },
       ],
     },
 

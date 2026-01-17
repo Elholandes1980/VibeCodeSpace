@@ -29,9 +29,20 @@ interface IngestResult {
   ogDescription?: string
   ogImageUrl?: string
   faviconUrl?: string
+  screenshotUrl?: string
   pricingModel?: string
   warnings: string[]
   error?: string
+}
+
+/**
+ * Generate screenshot URL using free screenshot services.
+ * Uses thum.io - free, no API key needed, reliable.
+ */
+function getScreenshotUrl(websiteUrl: string): string {
+  // thum.io expects the URL without encoding
+  // Returns a 1200px wide screenshot, cropped to 630px height (OG image ratio)
+  return `https://image.thum.io/get/width/1200/crop/630/${websiteUrl}`
 }
 
 /**
@@ -298,6 +309,11 @@ export const toolsUrlIngestHook: CollectionBeforeChangeHook = async ({
     if (meta.faviconUrl) {
       data.faviconUrl = meta.faviconUrl
     }
+
+    // Generate screenshot URL
+    const screenshotUrl = getScreenshotUrl(data.websiteUrl as string)
+    data.screenshotUrl = screenshotUrl
+    console.log(`[toolsUrlIngest] Screenshot URL: ${screenshotUrl}`)
 
     // Set pricing model if detected and not already set
     if (meta.pricingModel && (!data.pricingModel || data.pricingModel === 'unknown')) {
