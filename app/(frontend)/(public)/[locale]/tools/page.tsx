@@ -227,10 +227,8 @@ export default async function ToolsPage({ params, searchParams }: ToolsPageProps
                     tool.logo && typeof tool.logo === 'object'
                       ? { url: (tool.logo as Media).url || '', alt: (tool.logo as Media).alt || tool.name }
                       : null,
-                  featuredImage:
-                    tool.featuredImage && typeof tool.featuredImage === 'object'
-                      ? { url: (tool.featuredImage as Media).url || '', alt: (tool.featuredImage as Media).alt || tool.name }
-                      : null,
+                  // Use screenshotUrl (thum.io) directly - works without Blob storage
+                  screenshotUrl: (tool.screenshotUrl as string) || null,
                 }}
                 locale={locale}
                 labels={settings}
@@ -275,7 +273,7 @@ interface ToolCardProps {
     pricingModel: string | null
     trialAvailable: boolean
     logo: { url: string; alt: string } | null
-    featuredImage: { url: string; alt: string } | null
+    screenshotUrl: string | null
   }
   locale: string
   labels: Awaited<ReturnType<typeof getToolsSettings>>
@@ -290,12 +288,12 @@ function ToolCard({ tool, locale, labels }: ToolCardProps) {
       href={`/${locale}/tools/${tool.slug}`}
       className="group relative flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:border-[hsl(var(--accent)_/_0.3)] hover:shadow-lg"
     >
-      {/* Featured Image / Screenshot */}
+      {/* Screenshot Image */}
       <div className="relative h-40 w-full bg-muted overflow-hidden">
-        {tool.featuredImage ? (
+        {tool.screenshotUrl ? (
           <img
-            src={tool.featuredImage.url}
-            alt={tool.featuredImage.alt}
+            src={tool.screenshotUrl}
+            alt={`Screenshot of ${tool.name}`}
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
         ) : (
