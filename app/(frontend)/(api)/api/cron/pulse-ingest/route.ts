@@ -6,7 +6,7 @@
  * Protected by CRON_SECRET environment variable.
  *
  * Related:
- * - scripts/pulse-ingest.ts
+ * - lib/services/pulse-ingest.ts (core logic)
  * - vercel.json (cron configuration)
  */
 
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
   try {
     // Dynamic import to avoid loading Payload at module level
-    const { ingestPulseItems } = await import('@/scripts/pulse-ingest')
+    const { ingestPulseItems } = await import('@/lib/services/pulse-ingest')
     const stats = await ingestPulseItems()
 
     return NextResponse.json({
