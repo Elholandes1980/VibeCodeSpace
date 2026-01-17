@@ -227,6 +227,10 @@ export default async function ToolsPage({ params, searchParams }: ToolsPageProps
                     tool.logo && typeof tool.logo === 'object'
                       ? { url: (tool.logo as Media).url || '', alt: (tool.logo as Media).alt || tool.name }
                       : null,
+                  featuredImage:
+                    tool.featuredImage && typeof tool.featuredImage === 'object'
+                      ? { url: (tool.featuredImage as Media).url || '', alt: (tool.featuredImage as Media).alt || tool.name }
+                      : null,
                 }}
                 locale={locale}
                 labels={settings}
@@ -271,6 +275,7 @@ interface ToolCardProps {
     pricingModel: string | null
     trialAvailable: boolean
     logo: { url: string; alt: string } | null
+    featuredImage: { url: string; alt: string } | null
   }
   locale: string
   labels: Awaited<ReturnType<typeof getToolsSettings>>
@@ -283,55 +288,67 @@ function ToolCard({ tool, locale, labels }: ToolCardProps) {
   return (
     <Link
       href={`/${locale}/tools/${tool.slug}`}
-      className="group relative flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:border-[hsl(var(--accent)_/_0.3)] hover:shadow-lg"
+      className="group relative flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:border-[hsl(var(--accent)_/_0.3)] hover:shadow-lg"
     >
-      {/* Top Row: Logo + Pricing Badge */}
-      <div className="flex items-start justify-between gap-3 mb-4">
-        {/* Logo */}
-        <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
-          {tool.logo ? (
-            <img
-              src={tool.logo.url}
-              alt={tool.logo.alt}
-              className="h-full w-full object-contain p-2"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-xl font-bold text-muted-foreground">
+      {/* Featured Image / Screenshot */}
+      <div className="relative h-40 w-full bg-muted overflow-hidden">
+        {tool.featuredImage ? (
+          <img
+            src={tool.featuredImage.url}
+            alt={tool.featuredImage.alt}
+            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-muted/50">
+            <span className="text-4xl font-bold text-muted-foreground/30">
               {tool.name.charAt(0)}
-            </div>
-          )}
-        </div>
+            </span>
+          </div>
+        )}
 
-        {/* Pricing Badge */}
-        <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${pricingClass}`}>
+        {/* Pricing Badge (overlay) */}
+        <span className={`absolute top-3 right-3 rounded-full px-2.5 py-1 text-xs font-medium shadow-sm ${pricingClass}`}>
           {pricingLabel}
         </span>
+
+        {/* Trial Badge */}
+        {tool.trialAvailable && (
+          <div className="absolute top-3 left-3 rounded-full bg-green-500 px-2 py-0.5 text-[10px] font-medium text-white shadow-sm">
+            Trial
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="flex-1">
-        <h3 className="text-lg font-semibold text-foreground group-hover:text-[hsl(var(--accent))]">
-          {tool.name}
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+      <div className="flex flex-col flex-1 p-5">
+        {/* Logo + Name Row */}
+        <div className="flex items-center gap-3 mb-2">
+          {tool.logo && (
+            <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-lg bg-muted">
+              <img
+                src={tool.logo.url}
+                alt={tool.logo.alt}
+                className="h-full w-full object-contain p-1"
+              />
+            </div>
+          )}
+          <h3 className="text-lg font-semibold text-foreground group-hover:text-[hsl(var(--accent))]">
+            {tool.name}
+          </h3>
+        </div>
+
+        <p className="text-sm text-muted-foreground line-clamp-2 flex-1">
           {tool.shortOneLiner}
         </p>
-      </div>
 
-      {/* Footer */}
-      <div className="mt-4 flex items-center justify-between pt-3 border-t border-border/50">
-        <span className="text-sm font-medium text-[hsl(var(--accent))] group-hover:underline">
-          {labels.indexPage.cardCtaLabel}
-        </span>
-        <ArrowRight className="h-4 w-4 text-[hsl(var(--accent))] transition-transform group-hover:translate-x-1" />
-      </div>
-
-      {/* Trial Badge */}
-      {tool.trialAvailable && (
-        <div className="absolute -top-2 -right-2 rounded-full bg-green-500 px-2 py-0.5 text-[10px] font-medium text-white shadow-sm">
-          Trial
+        {/* Footer */}
+        <div className="mt-4 flex items-center justify-between pt-3 border-t border-border/50">
+          <span className="text-sm font-medium text-[hsl(var(--accent))] group-hover:underline">
+            {labels.indexPage.cardCtaLabel}
+          </span>
+          <ArrowRight className="h-4 w-4 text-[hsl(var(--accent))] transition-transform group-hover:translate-x-1" />
         </div>
-      )}
+      </div>
     </Link>
   )
 }
