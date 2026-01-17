@@ -13,6 +13,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 import { Badge } from '@/components/ui/badge'
 import type { Case, Locale, CaseDetailDictionary } from '../types'
 
@@ -110,14 +111,18 @@ export function CaseDetail({
         {/* Problem */}
         {caseData.problem && (
           <ContentSection title={dictionary.sections.problem}>
-            <p className="prose-content">{caseData.problem}</p>
+            <div className="prose prose-neutral dark:prose-invert max-w-none prose-p:text-muted-foreground prose-strong:text-foreground prose-headings:text-foreground">
+              <ReactMarkdown>{caseData.problem}</ReactMarkdown>
+            </div>
           </ContentSection>
         )}
 
         {/* Solution */}
         {caseData.solution && (
           <ContentSection title={dictionary.sections.solution}>
-            <p className="prose-content">{caseData.solution}</p>
+            <div className="prose prose-neutral dark:prose-invert max-w-none prose-p:text-muted-foreground prose-strong:text-foreground prose-headings:text-foreground">
+              <ReactMarkdown>{caseData.solution}</ReactMarkdown>
+            </div>
 
             {/* Stack integrated into solution */}
             {stackItems.length > 0 && (
@@ -218,27 +223,11 @@ interface LearningsListProps {
 }
 
 function LearningsList({ learnings }: LearningsListProps) {
-  // Split by newlines or bullet points
-  const items = learnings
-    .split(/[\n•-]/)
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0)
-
-  // If it's a single block of text, render as paragraph
-  if (items.length <= 1) {
-    return <p className="prose-content">{learnings}</p>
-  }
-
-  // Render as bullet list
+  // Render as markdown - it will handle lists, bold, etc.
   return (
-    <ul className="space-y-3">
-      {items.map((item, idx) => (
-        <li key={idx} className="flex items-start gap-3">
-          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))] flex-shrink-0" />
-          <span className="text-muted-foreground leading-relaxed">{item}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="prose prose-neutral dark:prose-invert max-w-none prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-headings:text-foreground">
+      <ReactMarkdown>{learnings}</ReactMarkdown>
+    </div>
   )
 }
 

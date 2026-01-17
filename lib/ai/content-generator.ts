@@ -71,7 +71,7 @@ async function generateWithClaude(metadata: ToolMetadata, apiKey: string): Promi
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-3-haiku-20240307', // Fast and cheap for content generation
+      model: 'claude-sonnet-4-20250514', // Claude Sonnet 4 for quality content generation
       max_tokens: 1024,
       messages: [
         {
