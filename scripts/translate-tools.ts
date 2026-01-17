@@ -22,7 +22,8 @@ import { translate } from '../lib/services/translate'
 import type { TargetLocale } from '../lib/services/translate'
 
 const TARGET_LOCALES: TargetLocale[] = ['en', 'es']
-const FIELDS_TO_TRANSLATE = ['name', 'shortOneLiner', 'description', 'primaryUseCase']
+// NOTE: 'name' excluded - tool names are brand names (Cursor, Midjourney, etc.)
+const FIELDS_TO_TRANSLATE = ['shortOneLiner', 'description', 'primaryUseCase']
 
 async function translateTools() {
   console.log('🌐 Translating tools...\n')

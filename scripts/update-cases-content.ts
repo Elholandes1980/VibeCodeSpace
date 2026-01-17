@@ -625,7 +625,7 @@ async function updateCases() {
           stack: content.stack,
           status: 'published', // CRITICAL: Must be published to show in frontend
         },
-        context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
+        // Translations now run in background (fire-and-forget) so no timeout issues
       })
 
       console.log(`✓ Updated: ${slug}`)

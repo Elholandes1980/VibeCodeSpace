@@ -575,7 +575,7 @@ async function seedTools() {
             order: cat.order,
             showInMegaMenu: true,
           },
-          context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
+          // Translations now run in background (fire-and-forget) so no timeout issues
         })
         categoryMap[cat.slug] = existing.docs[0].id as string
         console.log(`✓ Updated category: ${cat.title}`)
@@ -593,7 +593,7 @@ async function seedTools() {
             order: cat.order,
             showInMegaMenu: true,
           },
-          context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
+          // Translations now run in background (fire-and-forget) so no timeout issues
         })
         categoryMap[cat.slug] = newCat.id as string
         console.log(`✓ Created category: ${cat.title}`)
@@ -645,7 +645,7 @@ async function seedTools() {
           id: existing.docs[0].id,
           locale: 'nl',
           data: toolData,
-          context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
+          // Translations now run in background (fire-and-forget) so no timeout issues
         })
         console.log(`✓ Updated: ${tool.name}`)
       } else {
@@ -654,7 +654,7 @@ async function seedTools() {
           collection: 'tools',
           locale: 'nl',
           data: toolData,
-          context: { skipTranslation: true }, // Skip auto-translate to avoid Neon timeout
+          // Translations now run in background (fire-and-forget) so no timeout issues
         })
         console.log(`✓ Created: ${tool.name}`)
       }

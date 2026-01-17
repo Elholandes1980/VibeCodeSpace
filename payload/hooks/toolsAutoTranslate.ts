@@ -5,9 +5,8 @@
  * When content is created/updated in NL (source locale),
  * automatically translates to EN and ES using configured provider.
  *
- * Uses afterChange hook to update translations after document is saved.
- * Respects syncTranslationsFromNL flag - only translates if enabled.
- * Only fills empty fields - never overwrites existing translations.
+ * IMPORTANT: Translations run asynchronously (fire-and-forget) to avoid
+ * blocking the database transaction and causing Neon timeout errors.
  *
  * Related:
  * - lib/services/translate.ts
@@ -15,17 +14,13 @@
  * - payload/hooks/autoTranslate.ts (Cases version)
  */
 
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook, Payload } from 'payload'
 import { translate } from '../../lib/services/translate'
 import type { TargetLocale } from '../../lib/services/translate'
 
 // Simple localized fields (text/textarea)
-const SIMPLE_LOCALIZED_FIELDS = [
-  'name',
-  'shortOneLiner',
-  'description',
-  'primaryUseCase',
-]
+// NOTE: 'name' is excluded - tool names are brand names and should NOT be translated
+const SIMPLE_LOCALIZED_FIELDS = ['shortOneLiner', 'description', 'primaryUseCase']
 
 // Array fields that need special handling
 const ARRAY_LOCALIZED_FIELDS = ['bestFor', 'notFor', 'keyFeatures']
@@ -71,121 +66,46 @@ async function translateArrayField(
 }
 
 /**
- * Hook that auto-translates NL content to EN and ES.
- * Runs after save to update other locales.
+ * Perform translations in background (fire-and-forget).
+ * This function is NOT awaited to prevent blocking the DB transaction.
  */
-export const toolsAutoTranslateHook: CollectionAfterChangeHook = async ({
-  doc,
-  req,
-  operation,
-  previousDoc,
-}) => {
-  const { payload } = req
+async function translateToolInBackground(
+  payload: Payload,
+  doc: Record<string, unknown>,
+  fieldsToTranslate: Record<string, string>,
+  arrayFieldsToTranslate: Record<string, unknown[]>
+): Promise<void> {
+  const slug = doc.slug as string
+  console.log(`[toolsAutoTranslate] Starting background translation for tool: ${slug}`)
 
-  // Skip if triggered by translation update (prevent infinite loop)
-  if (req.context?.skipTranslation) {
-    return doc
-  }
-
-  // Only process when editing in NL locale
-  const currentLocale = req.locale || SOURCE_LOCALE
-  if (currentLocale !== SOURCE_LOCALE) {
-    return doc
-  }
-
-  // Check if sync is enabled
-  if (doc.syncTranslationsFromNL === false) {
-    console.log(`[toolsAutoTranslate] Sync disabled for tool: ${doc.slug}`)
-    return doc
-  }
-
-  // Skip if no payload client
-  if (!payload) {
-    return doc
-  }
-
-  // Collect simple fields that need translation
-  const fieldsToTranslate: Record<string, string> = {}
-
-  for (const field of SIMPLE_LOCALIZED_FIELDS) {
-    const newValue = doc[field]
-
-    if (!newValue || typeof newValue !== 'string') {
-      continue
-    }
-
-    // For create: translate all fields
-    if (operation === 'create') {
-      fieldsToTranslate[field] = newValue
-    }
-
-    // For update: only translate changed fields
-    if (operation === 'update' && previousDoc) {
-      const oldValue = previousDoc[field]
-      if (newValue !== oldValue) {
-        fieldsToTranslate[field] = newValue
-      }
-    }
-  }
-
-  // Check array fields for changes
-  const arrayFieldsToTranslate: Record<string, unknown[]> = {}
-
-  for (const field of ARRAY_LOCALIZED_FIELDS) {
-    const newValue = doc[field] as unknown[] | undefined
-
-    if (!newValue || !Array.isArray(newValue) || newValue.length === 0) {
-      continue
-    }
-
-    // For create: translate all array fields
-    if (operation === 'create') {
-      arrayFieldsToTranslate[field] = newValue
-    }
-
-    // For update: check if array changed
-    if (operation === 'update' && previousDoc) {
-      const oldValue = previousDoc[field] as unknown[] | undefined
-      if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
-        arrayFieldsToTranslate[field] = newValue
-      }
-    }
-  }
-
-  // If nothing to translate, return early
-  if (
-    Object.keys(fieldsToTranslate).length === 0 &&
-    Object.keys(arrayFieldsToTranslate).length === 0
-  ) {
-    return doc
-  }
-
-  const totalFields =
-    Object.keys(fieldsToTranslate).length + Object.keys(arrayFieldsToTranslate).length
-  console.log(`[toolsAutoTranslate] Translating ${totalFields} fields for tool: ${doc.slug}`)
-
-  // Translate to each target locale
   for (const targetLocale of TARGET_LOCALES) {
     try {
       // Get current locale data to check what's already filled
       const existingData = await payload.findByID({
         collection: 'tools',
-        id: doc.id,
+        id: doc.id as string,
         locale: targetLocale,
       })
 
       const translations: Record<string, unknown> = {}
 
-      // Translate simple fields (only if empty in target locale)
+      // Translate simple fields (only if empty or same as source = fallback)
       for (const [field, sourceText] of Object.entries(fieldsToTranslate)) {
         const existingValue = existingData[field]
 
-        // Skip if target already has content (don't overwrite)
-        if (existingValue && typeof existingValue === 'string' && existingValue.trim() !== '') {
-          // But skip if it's a placeholder prefix
-          if (!existingValue.startsWith('[EN]') && !existingValue.startsWith('[ES]')) {
-            continue
-          }
+        // Check if existing is fallback (same as source)
+        const isFallback = existingValue === sourceText
+
+        // Skip if already has different content (real translation exists)
+        if (
+          existingValue &&
+          typeof existingValue === 'string' &&
+          existingValue.trim() !== '' &&
+          !isFallback &&
+          !existingValue.startsWith('[EN]') &&
+          !existingValue.startsWith('[ES]')
+        ) {
+          continue
         }
 
         try {
@@ -227,17 +147,117 @@ export const toolsAutoTranslateHook: CollectionAfterChangeHook = async ({
       if (Object.keys(translations).length > 0) {
         await payload.update({
           collection: 'tools',
-          id: doc.id,
+          id: doc.id as string,
           locale: targetLocale,
           data: translations,
           context: { skipTranslation: true },
         })
-        console.log(`[toolsAutoTranslate] Updated ${targetLocale} locale for tool: ${doc.slug}`)
+        console.log(`[toolsAutoTranslate] Updated ${targetLocale} locale for tool: ${slug}`)
       }
     } catch (error) {
       console.error(`[toolsAutoTranslate] Failed to update ${targetLocale}:`, error)
     }
   }
 
+  console.log(`[toolsAutoTranslate] Completed background translation for tool: ${slug}`)
+}
+
+/**
+ * Hook that auto-translates NL content to EN and ES.
+ * Translations run in background to avoid blocking DB transaction.
+ */
+export const toolsAutoTranslateHook: CollectionAfterChangeHook = async ({
+  doc,
+  req,
+  operation,
+  previousDoc,
+}) => {
+  const { payload } = req
+
+  // Skip if triggered by translation update (prevent infinite loop)
+  if (req.context?.skipTranslation) {
+    return doc
+  }
+
+  // Only process when editing in NL locale
+  const currentLocale = req.locale || SOURCE_LOCALE
+  if (currentLocale !== SOURCE_LOCALE) {
+    return doc
+  }
+
+  // Check if sync is enabled
+  if (doc.syncTranslationsFromNL === false) {
+    console.log(`[toolsAutoTranslate] Sync disabled for tool: ${doc.slug}`)
+    return doc
+  }
+
+  if (!payload) {
+    return doc
+  }
+
+  // Collect simple fields that need translation
+  const fieldsToTranslate: Record<string, string> = {}
+
+  for (const field of SIMPLE_LOCALIZED_FIELDS) {
+    const newValue = doc[field]
+
+    if (!newValue || typeof newValue !== 'string') {
+      continue
+    }
+
+    if (operation === 'create') {
+      fieldsToTranslate[field] = newValue
+    }
+
+    if (operation === 'update' && previousDoc) {
+      const oldValue = previousDoc[field]
+      if (newValue !== oldValue) {
+        fieldsToTranslate[field] = newValue
+      }
+    }
+  }
+
+  // Check array fields for changes
+  const arrayFieldsToTranslate: Record<string, unknown[]> = {}
+
+  for (const field of ARRAY_LOCALIZED_FIELDS) {
+    const newValue = doc[field] as unknown[] | undefined
+
+    if (!newValue || !Array.isArray(newValue) || newValue.length === 0) {
+      continue
+    }
+
+    if (operation === 'create') {
+      arrayFieldsToTranslate[field] = newValue
+    }
+
+    if (operation === 'update' && previousDoc) {
+      const oldValue = previousDoc[field] as unknown[] | undefined
+      if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+        arrayFieldsToTranslate[field] = newValue
+      }
+    }
+  }
+
+  // If nothing to translate, return early
+  if (
+    Object.keys(fieldsToTranslate).length === 0 &&
+    Object.keys(arrayFieldsToTranslate).length === 0
+  ) {
+    return doc
+  }
+
+  const totalFields =
+    Object.keys(fieldsToTranslate).length + Object.keys(arrayFieldsToTranslate).length
+  console.log(`[toolsAutoTranslate] Queuing ${totalFields} fields for tool: ${doc.slug}`)
+
+  // Fire-and-forget: Start translation in background WITHOUT awaiting
+  translateToolInBackground(payload, doc, fieldsToTranslate, arrayFieldsToTranslate).catch(
+    (error) => {
+      console.error(`[toolsAutoTranslate] Background translation failed for ${doc.slug}:`, error)
+    }
+  )
+
+  // Return immediately - translations will complete in background
   return doc
 }
