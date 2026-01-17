@@ -466,3 +466,61 @@ export const getCoursePromo = cache(async (locale: Locale = 'nl'): Promise<Cours
     return null
   }
 })
+
+// === Pulse Items ===
+
+export interface PulseItemData {
+  id: number
+  externalId: string
+  source: 'hn' | 'ph' | 'devto' | 'ih' | 'twitter' | 'manual'
+  sourceUrl: string
+  category: 'tool-launch' | 'success-story' | 'tips-tutorial' | 'twitter-thread'
+  title: string
+  summary: string
+  author?: string
+  upvotes?: number
+  commentsCount?: number
+  sourcePublishedAt?: string
+  publishedAt: string
+}
+
+/**
+ * Fetch published pulse items for the Pulse feed.
+ * Returns most recent items first.
+ */
+export const getPulseItems = cache(async (
+  locale: Locale = 'nl',
+  limit: number = 50
+): Promise<PulseItemData[]> => {
+  try {
+    const payload = await getPayloadClient()
+    const result = await payload.find({
+      collection: 'pulse-items',
+      where: {
+        status: { equals: 'published' },
+      },
+      locale,
+      fallbackLocale: 'nl',
+      limit,
+      sort: '-publishedAt',
+    })
+
+    return result.docs.map((doc) => ({
+      id: doc.id as number,
+      externalId: doc.externalId as string,
+      source: doc.source as PulseItemData['source'],
+      sourceUrl: doc.sourceUrl as string,
+      category: doc.category as PulseItemData['category'],
+      title: doc.title as string,
+      summary: doc.summary as string,
+      author: doc.author as string | undefined,
+      upvotes: doc.upvotes as number | undefined,
+      commentsCount: doc.commentsCount as number | undefined,
+      sourcePublishedAt: doc.sourcePublishedAt as string | undefined,
+      publishedAt: doc.publishedAt as string,
+    }))
+  } catch (error) {
+    console.error('[Payload] Failed to fetch pulse items:', error)
+    return []
+  }
+})

@@ -30,6 +30,7 @@ import { Tools } from './payload/collections/Tools'
 import { Cases } from './payload/collections/Cases'
 import { Builders } from './payload/collections/Builders'
 import { Pages } from './payload/collections/Pages'
+import { PulseItems } from './payload/collections/PulseItems'
 import { SiteGlobal, CoursePromo, Navigation, ToolsSettings } from './payload/globals'
 
 const filename = fileURLToPath(import.meta.url)
@@ -124,6 +125,7 @@ export default buildConfig({
     Cases,
     Builders,
     Pages,
+    PulseItems,
   ],
 
   // === Globals ===

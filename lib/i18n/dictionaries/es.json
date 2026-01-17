@@ -156,8 +156,43 @@
     "description": "[ES] Herramientas y tecnologías utilizadas en proyectos de vibecoding."
   },
   "pulse": {
-    "title": "[ES] Pulse",
-    "description": "[ES] Actualizaciones curadas del mundo del desarrollo asistido por IA."
+    "title": "Pulse",
+    "description": "Actualizaciones curadas del mundo del desarrollo asistido por IA. Contenido fresco diario de Hacker News, Product Hunt, Dev.to e Indie Hackers.",
+    "filters": {
+      "all": "Todos",
+      "category": "Categoría",
+      "source": "Fuente",
+      "categories": {
+        "tool-launch": "Lanzamientos",
+        "success-story": "Historias de Éxito",
+        "tips-tutorial": "Tips y Tutoriales",
+        "twitter-thread": "Hilos de X"
+      },
+      "sources": {
+        "hn": "Hacker News",
+        "ph": "Product Hunt",
+        "devto": "Dev.to",
+        "ih": "Indie Hackers",
+        "twitter": "X/Twitter",
+        "manual": "VibeCodeSpace"
+      }
+    },
+    "empty": {
+      "title": "No se encontraron elementos",
+      "description": "No hay elementos que coincidan con tus filtros. Prueba con otros filtros."
+    },
+    "timeAgo": {
+      "now": "ahora",
+      "minutes": "hace {n}m",
+      "hours": "hace {n}h",
+      "days": "hace {n}d"
+    },
+    "viewSource": "Ver fuente",
+    "newsletter": {
+      "kicker": "No te lo pierdas",
+      "title": "Recibe el resumen semanal de Pulse",
+      "description": "Cada domingo las mejores herramientas de IA, historias de éxito y consejos en tu inbox."
+    }
   },
   "about": {
     "title": "[ES] Acerca de",

@@ -191,7 +191,42 @@
   },
   "pulse": {
     "title": "Pulse",
-    "description": "Gecureerde updates uit de wereld van AI-assisted development."
+    "description": "Gecureerde updates uit de wereld van AI-assisted development. Dagelijks verse content van Hacker News, Product Hunt, Dev.to en Indie Hackers.",
+    "filters": {
+      "all": "Alle",
+      "category": "Categorie",
+      "source": "Bron",
+      "categories": {
+        "tool-launch": "Tool Launches",
+        "success-story": "Succesverhalen",
+        "tips-tutorial": "Tips & Tutorials",
+        "twitter-thread": "X Threads"
+      },
+      "sources": {
+        "hn": "Hacker News",
+        "ph": "Product Hunt",
+        "devto": "Dev.to",
+        "ih": "Indie Hackers",
+        "twitter": "X/Twitter",
+        "manual": "VibeCodeSpace"
+      }
+    },
+    "empty": {
+      "title": "Geen items gevonden",
+      "description": "Er zijn momenteel geen items die overeenkomen met je filters. Probeer andere filters."
+    },
+    "timeAgo": {
+      "now": "zojuist",
+      "minutes": "{n}m geleden",
+      "hours": "{n}u geleden",
+      "days": "{n}d geleden"
+    },
+    "viewSource": "Bekijk bron",
+    "newsletter": {
+      "kicker": "Mis niets",
+      "title": "Ontvang de wekelijkse Pulse digest",
+      "description": "Elke zondag de beste AI-tools, succesverhalen en tips in je inbox."
+    }
   },
   "about": {
     "title": "Over ons",

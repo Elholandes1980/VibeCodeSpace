@@ -176,20 +176,46 @@ FEATURE_3_DETAIL: [beschrijving]`
 
 /**
  * Parse AI response into structured content.
+ * Uses line-by-line parsing to correctly extract each field.
  */
 function parseAIResponse(response: string, metadata: ToolMetadata): GeneratedContent {
-  const extract = (key: string): string => {
-    const regex = new RegExp(`${key}:\\s*(.+?)(?=\\n[A-Z_]+:|$)`, 's')
-    const match = response.match(regex)
-    return match ? match[1].trim() : ''
+  // Split response into lines and parse each field
+  const lines = response.split('\n')
+  const fields: Record<string, string> = {}
+
+  let currentKey = ''
+  let currentValue = ''
+
+  for (const line of lines) {
+    // Check if line starts with a known key pattern
+    const keyMatch = line.match(
+      /^(SHORT_ONE_LINER|DESCRIPTION|BEST_FOR_\d|NOT_FOR_\d|FEATURE_\d_TITLE|FEATURE_\d_DETAIL):\s*(.*)/
+    )
+
+    if (keyMatch) {
+      // Save previous field if exists
+      if (currentKey) {
+        fields[currentKey] = currentValue.trim()
+      }
+      currentKey = keyMatch[1]
+      currentValue = keyMatch[2]
+    } else if (currentKey && line.trim()) {
+      // Continue multi-line value (for description)
+      currentValue += ' ' + line.trim()
+    }
   }
 
-  const shortOneLiner = extract('SHORT_ONE_LINER') || generateShortOneLiner(metadata)
-  const description = extract('DESCRIPTION') || generateDescription(metadata)
+  // Save last field
+  if (currentKey) {
+    fields[currentKey] = currentValue.trim()
+  }
+
+  const shortOneLiner = fields['SHORT_ONE_LINER'] || generateShortOneLiner(metadata)
+  const description = fields['DESCRIPTION'] || generateDescription(metadata)
 
   const bestFor: Array<{ point: string }> = []
   for (let i = 1; i <= 4; i++) {
-    const point = extract(`BEST_FOR_${i}`)
+    const point = fields[`BEST_FOR_${i}`]
     if (point) bestFor.push({ point })
   }
   if (bestFor.length === 0) {
@@ -198,7 +224,7 @@ function parseAIResponse(response: string, metadata: ToolMetadata): GeneratedCon
 
   const notFor: Array<{ point: string }> = []
   for (let i = 1; i <= 3; i++) {
-    const point = extract(`NOT_FOR_${i}`)
+    const point = fields[`NOT_FOR_${i}`]
     if (point) notFor.push({ point })
   }
   if (notFor.length === 0) {
@@ -207,8 +233,8 @@ function parseAIResponse(response: string, metadata: ToolMetadata): GeneratedCon
 
   const keyFeatures: Array<{ title: string; detail: string }> = []
   for (let i = 1; i <= 3; i++) {
-    const title = extract(`FEATURE_${i}_TITLE`)
-    const detail = extract(`FEATURE_${i}_DETAIL`)
+    const title = fields[`FEATURE_${i}_TITLE`]
+    const detail = fields[`FEATURE_${i}_DETAIL`]
     if (title && detail) {
       keyFeatures.push({ title, detail })
     }

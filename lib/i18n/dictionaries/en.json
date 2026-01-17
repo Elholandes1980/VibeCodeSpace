@@ -168,8 +168,43 @@
     "description": "[EN] Tools and technologies used in vibecoding projects."
   },
   "pulse": {
-    "title": "[EN] Pulse",
-    "description": "[EN] Curated updates from the world of AI-assisted development."
+    "title": "Pulse",
+    "description": "Curated updates from the world of AI-assisted development. Fresh content daily from Hacker News, Product Hunt, Dev.to and Indie Hackers.",
+    "filters": {
+      "all": "All",
+      "category": "Category",
+      "source": "Source",
+      "categories": {
+        "tool-launch": "Tool Launches",
+        "success-story": "Success Stories",
+        "tips-tutorial": "Tips & Tutorials",
+        "twitter-thread": "X Threads"
+      },
+      "sources": {
+        "hn": "Hacker News",
+        "ph": "Product Hunt",
+        "devto": "Dev.to",
+        "ih": "Indie Hackers",
+        "twitter": "X/Twitter",
+        "manual": "VibeCodeSpace"
+      }
+    },
+    "empty": {
+      "title": "No items found",
+      "description": "There are no items matching your filters. Try different filters."
+    },
+    "timeAgo": {
+      "now": "just now",
+      "minutes": "{n}m ago",
+      "hours": "{n}h ago",
+      "days": "{n}d ago"
+    },
+    "viewSource": "View source",
+    "newsletter": {
+      "kicker": "Don't miss out",
+      "title": "Get the weekly Pulse digest",
+      "description": "Every Sunday the best AI tools, success stories and tips in your inbox."
+    }
   },
   "about": {
     "title": "[EN] About",
