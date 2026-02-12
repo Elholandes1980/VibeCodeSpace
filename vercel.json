@@ -1,8 +1,1 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron/pulse-ingest",
-      "schedule": "0 6 * * *"
-    }
-  ]
-}
+{}

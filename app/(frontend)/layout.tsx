@@ -1,26 +1,19 @@
 /**
  * app/(frontend)/layout.tsx
  *
- * Root layout for frontend routes.
- * Contains html/body tags (required by Next.js).
- * Includes ConvexProvider for reactive data fetching.
+ * Root layout for FitVibe 3D fitness app.
+ * Contains html/body tags required by Next.js.
  *
  * Related:
- * - app/(frontend)/(public)/[locale]/layout.tsx
- * - components/providers/convex-provider.tsx
- * - app/globals.css
+ * - app/(frontend)/(public)/[locale]/fitness/page.tsx
  */
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import '@/app/globals.css'
-import { ConvexClientProvider } from '@/components/providers/convex-provider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'VibeCodeSpace',
-  description: 'Software gebouwd in het vibecoding-tijdperk',
+  title: 'FitVibe 3D - Fitness Oefeningen',
+  description: 'Interactieve 3D fitness oefeningen met geanimeerde demonstraties',
 }
 
 export default function FrontendLayout({
@@ -30,8 +23,8 @@ export default function FrontendLayout({
 }) {
   return (
     <html lang="nl" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+      <body className="font-sans" suppressHydrationWarning>
+        {children}
       </body>
     </html>
   )

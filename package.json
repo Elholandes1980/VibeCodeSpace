@@ -1,49 +1,31 @@
 {
-  "name": "vibecodespace",
+  "name": "fitvibe-3d",
   "version": "1.0.0",
   "private": true,
-  "description": "Software gebouwd in het vibecoding-tijdperk",
+  "description": "FitVibe 3D - Interactieve fitness oefeningen met 3D animaties",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx,.js,.mjs",
-    "typecheck": "tsc --noEmit",
-    "check:arch": "tsx scripts/check-architecture.ts"
+    "lint": "eslint . --ext .ts,.tsx,.js,.mjs"
   },
   "keywords": [
-    "vibecoding",
-    "showcase",
-    "cms"
+    "fitness",
+    "3d",
+    "exercises"
   ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
-    "@libsql/client": "^0.17.0",
-    "@payloadcms/db-postgres": "^3.71.1",
-    "@payloadcms/db-sqlite": "^3.71.1",
-    "@payloadcms/next": "^3.71.1",
-    "@payloadcms/richtext-lexical": "^3.71.1",
-    "@payloadcms/storage-vercel-blob": "^3.71.1",
-    "@radix-ui/react-label": "^2.1.8",
-    "@radix-ui/react-select": "^2.2.6",
-    "@radix-ui/react-slot": "^1.2.4",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
-    "@vercel/blob": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "convex": "^1.31.4",
-    "libsql": "^0.5.22",
     "lucide-react": "^0.562.0",
     "next": "^15.5.9",
-    "payload": "^3.71.1",
-    "pg": "^8.17.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-markdown": "^10.1.0",
-    "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0",
     "three": "^0.182.0"
@@ -63,7 +45,6 @@
     "globals": "^17.0.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

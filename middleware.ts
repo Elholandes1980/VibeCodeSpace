@@ -18,9 +18,9 @@ export const SUPPORTED_LOCALES = ['nl', 'en', 'es'] as const
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Redirect root to default locale
+  // Redirect root to fitness app
   if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}`, request.url))
+    return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}/fitness`, request.url))
   }
 
   return NextResponse.next()
